@@ -15,15 +15,19 @@ debug instructions
 Run a local server using the following commands:
 
 1. Create a virtual environment (only needs to be done once) 
-  virtualenv venv --distribute 
+
+  `virtualenv venv --distribute` 
 
 2. Source the virtual environment
-  source venv/bin/activate
+
+  `source venv/bin/activate`
 
 3. Collect the static files
-  python manage.py collectstatic
+
+  `python manage.py collectstatic`
 
 4. Run the server
-  python manage.py runserver
 
-5. Open localhost:8000 in your browser of choice.
+  `python manage.py runserver`
+
+5. Open `localhost:8000` in your browser of choice.
