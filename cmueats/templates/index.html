@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block header %}
+    <meta charset="utf-8">
+    <title>Hungry? Eat at CMU!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    body {
+      padding-top: 50px;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/home/">CMU Eats</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home/">Home</a></li>
+            <li><a href="/what/">WTF is this?</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<div class="container">
+{% if bestPick %}
+  <div class="row" style="background:#fff380; text-align: center">
+      <div class="span4 offset4">
+          <h3>Can't make up your mind?  CMU Eats thinks you should eat at </h3>
+          <h1>{{ bestPick.name }}</h1>
+          <p>{{ bestPick.location }}</p>
+      </div>
+  </div>
+{% else %}
+  <div class="row" style="background:#fff380; text-align: center">
+      <div class="span4 offset4">
+          <h3>Looks liks nothing on campus is open :(</h3>
+      </div>
+  </div>
+
+{% endif %}
+{% for l in openLoc %}
+{% if forloop.counter0|divisibleby:3 %}
+    <div class="row">
+{% endif %}
+    <div class="col-lg-4" style="background:#a4c306; text-align: center">
+            <h2>{{ l.name }}</h2>
+            <p>{{ l.location }}</p>
+           {% comment %} <p>Closes in {{ l.closesIn }}.</p> {% endcomment %}
+        </div>
+{% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
+    </div>
+{% endif %}
+{% endfor %}
+{% for l in closedLoc %}
+{% if forloop.counter0|divisibleby:3 %}
+    <div class="row">
+{% endif %}
+        <div class="col-lg-4" style="background:#db221d; text-align: center">
+        <h2>{{ l.name }}</h2>
+        <p>{{ l.location }}</p>
+      {% comment %}  <p>{% if l.opensIn %}Opens in {{ l.opensIn }}{% else %}Closed for the day{% endif %}.</p> {% endcomment %}
+    </div>
+{% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
+    </div>
+{% endif %}
+{% endfor %}
+</div>
+{% endblock %}
