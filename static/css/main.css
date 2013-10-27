@@ -1,0 +1,14 @@
+.open_restaurant {
+    background: #a4c306;
+    text-align: center;
+}
+
+.closed_restaurant {
+    background: #db221d;
+    text-align: center;
+}
+
+.recommendation {
+    background:#fff380;
+    text-align: center;
+}

@@ -34,7 +34,7 @@
     </div>
 <div class="container">
 {% if bestPick %}
-  <div class="row" style="background:#fff380; text-align: center">
+  <div class="row recommendation">
       <div class="span4 offset4">
           <h3>Can't make up your mind?  CMU Eats thinks you should eat at </h3>
           <h1>{{ bestPick.name }}</h1>
@@ -42,7 +42,7 @@
       </div>
   </div>
 {% else %}
-  <div class="row" style="background:#fff380; text-align: center">
+  <div class="row recommendation">
       <div class="span4 offset4">
           <h3>Looks liks nothing on campus is open :(</h3>
       </div>
@@ -53,10 +53,9 @@
 {% if forloop.counter0|divisibleby:3 %}
     <div class="row">
 {% endif %}
-    <div class="col-lg-4" style="background:#a4c306; text-align: center">
+    <div class="col-lg-4 open_restaurant">
             <h2>{{ l.name }}</h2>
             <p>{{ l.location }}</p>
-           {% comment %} <p>Closes in {{ l.closesIn }}.</p> {% endcomment %}
         </div>
 {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
     </div>
@@ -66,10 +65,9 @@
 {% if forloop.counter0|divisibleby:3 %}
     <div class="row">
 {% endif %}
-        <div class="col-lg-4" style="background:#db221d; text-align: center">
+        <div class="col-lg-4 closed_restaurant">
         <h2>{{ l.name }}</h2>
         <p>{{ l.location }}</p>
-      {% comment %}  <p>{% if l.opensIn %}Opens in {{ l.opensIn }}{% else %}Closed for the day{% endif %}.</p> {% endcomment %}
     </div>
 {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
     </div>
