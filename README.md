@@ -21,6 +21,10 @@ Run a local server using the following commands:
 2. Source the virtual environment
 
   `source venv/bin/activate`
+  
+3. If this is the first time, use pip to install dependencies.
+
+  `pip install -r requirements.txt`
 
 3. Collect the static files
 
