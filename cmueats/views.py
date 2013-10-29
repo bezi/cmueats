@@ -41,7 +41,9 @@ def home(request):
         if l_time == "Sunday":
             r_time = x["times"].get("U")
             
-        x["isOpen"] = isOpen(r_time)
+        l_time = strftime("%H%M")
+        x["isOpen"] = isOpen(r_time, l_time)
+        x["infoString"] = timeInfoString(r_time, l_time, x)
 
     for x in data:
         if x["isOpen"]:
