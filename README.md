@@ -24,9 +24,15 @@ todo
 debug instructions
 ------------------
 
-Run a local server using the following commands:
+Run a local server (on Linux) using the following commands:
 
-1. Create a virtual environment (only needs to be done once) 
+1. Pull the github repository and `cd` to the root of repository
+
+1. Ensure heroku is installed (see distribution specific information).
+  
+  `heroku --version`
+
+2. Create a virtual environment (only needs to be done once) 
 
   `virtualenv venv --distribute` 
 
