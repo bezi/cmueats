@@ -71,19 +71,18 @@ def tomorrow(time):
 
 def isOpen(r_time, l_time): 
     if r_time != "":
-        times = string.split(r_time,":")
+        times = r_time.split(":")
         for x in times: 
-            time = string.split(x,"-")
+            time = x.split("-")
             if int(time[0]) <= int(l_time) and int(l_time) <= int(time[1]):
                 return True
     return False
 
 def timeInfoString(r_time, l_time, restaurant):
-    infoString = "Error."
+    times = r_time.split(":")
     if isOpen(r_time, l_time):
-        times = string.split(r_time, ":")
         for x in times:
-            time = string.split(x, '-')
+            time = x.split('-')
             if int(time[0]) <= int(l_time) and int(l_time) <= int(time[1]):
                 tempTime = getTime(time[1])
                 # Check it it's open until tomorrow morning
@@ -101,5 +100,22 @@ def timeInfoString(r_time, l_time, restaurant):
                         return "Closes on " + today(day) + " at " + getTime(new_r_times[1]) + "."
                 return "Closes at " + tempTime + "."
     else:
-        infoString = "Shit, it's closed :("
-    return infoString
+        times = r_time.split(":")
+        done_for_day = True;
+        for x in times:
+            time = x.split("-")
+            if int(time[0]) > int(l_time):
+                done_for_day = False
+
+        if done_for_day:
+            day = tomorrow(strftime("%A", localtime()))
+            r_time = restaurant["times"].get(day)
+            if r_time != "":
+                return "Closed until tomorrow at " + getTime(rtime.split("-")[0]) + "."
+            while r_time == "":
+                day = tomorrow(strftime("%A", localtime()))
+                r_time = restaurant["times"].get(day)
+            return "Closed until " + today(day) + " at " + getTime(rtime.split("-")[0]) + "."
+        else:
+            return "Opens at " + getTime(times[0].split("-")[0]) + "."
+    return "Error."
