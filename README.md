@@ -9,6 +9,18 @@ Currently hosted at [cmueats.com](http://www.cmueats.com).
 Written by Oscar Bezi, Justin Gallagher, and Kirn Hans at the 2013 HackCMU Hackathon.  
 Maintained by Oscar and Justin.
 
+todo
+----
+- Times to open and close
+- Google map API integration
+- Tags/types of food
+- Search function
+- Countdown timer to open and close
+- Mobile apps for iOS and Android
+- Parsing schedule from CMU web page, not hard-coded
+- Database, not dictionary
+
+
 debug instructions
 ------------------
 
