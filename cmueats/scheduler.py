@@ -25,12 +25,32 @@ def getTime(string):
     if int(hours) > 12:
         hours = str(int(hours) - 12)
         ampm = "PM"
-    return hours + ":" + mins + ampm
+    if int(mins) == 0:
+        return hours.lstrip('0') + ampm
+    return hours.lstrip('0') + ":" + mins + ampm
 
 def inHowLong(time_i, time_f):
     infoString = "Error parsing."
 
     return infoString
+
+def today(time):
+    if time == "M":
+        return "Monday"
+    if time == "T":
+        return "Tuesday"
+    if time == "W":
+        return "Wednesday"
+    if time == "R":
+        return "Thursday"
+    if time == "F":
+        return "Friday"
+    if time == "S":
+        return "Saturday"
+    if time == "U":
+        return "Sunday"
+    return "Error!  Invalid time {}".format(time)
+    
 
 def tomorrow(time):
     if time == "Monday" or time == "M":
@@ -68,9 +88,17 @@ def timeInfoString(r_time, l_time, restaurant):
                 tempTime = getTime(time[1])
                 # Check it it's open until tomorrow morning
                 if tempTime == "midnight":
-                    new_r_time = x["times"].get(tomorrow(strftime("%A", localtime()))
-                    if string.split(new_r_time, "-")[0] == "0000":
-                        return "Closes tomorrow at " + getTime(new_r_time.split("-")[1]) + "."
+                    day = tomorrow(strftime("%A", localtime()))
+                    new_r_time = restaurant["times"].get(day)
+                    new_r_times = new_r_time.split("-")
+                    if new_r_times[0] == "0000":
+                        if new_r_times[1] != "2400":
+                            return "Closes tomorrow at " + getTime(new_r_times[1]) + "."
+                        while new_r_times[1] == "2400":
+                            day = tomorrow(day)
+                            new_r_time = restaurant["times"].get(day)
+                            new_r_times = new_r_time.split("-")
+                        return "Closes on " + today(day) + " at " + getTime(new_r_times[1]) + "."
                 return "Closes at " + tempTime + "."
     else:
         infoString = "Shit, it's closed :("
