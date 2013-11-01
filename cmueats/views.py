@@ -20,6 +20,9 @@ def contact(request):
 def what(request):
   return render_to_response('what.html')
 
+def map(request):
+  return render_to_response('map.html')
+
 def getTime(string):
     mins = string[-2:]
     if len(string) == 4:

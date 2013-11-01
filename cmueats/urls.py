@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^about/$', 'cmueats.views.about', name='about'),
     url(r'^contact/$', 'cmueats.views.contact', name='contact'),
     url(r'^what/$', 'cmueats.views.what', name='what'),
+    url(r'^map/$', 'cmueats.views.map', name='map'),
 )
