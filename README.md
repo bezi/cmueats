@@ -19,6 +19,7 @@ todo
 - Mobile apps for iOS and Android
 - Parsing schedule from CMU web page, not hard-coded
 - Database, not dictionary
+- Python OOP
 
 
 debug instructions
