@@ -39,6 +39,7 @@
           <h3>Can't make up your mind?  CMU Eats thinks you should eat at </h3>
           <h1>{{ bestPick.name }}</h1>
           <p>{{ bestPick.location }}</p>
+          <p>{{ bestPick.infoString }}</p>
       </div>
   </div>
 {% else %}
@@ -56,6 +57,7 @@
     <div class="col-lg-4 open_restaurant">
             <h2>{{ l.name }}</h2>
             <p>{{ l.location }}</p>
+            <p>{{ l.infoString }}</p>
         </div>
 {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
     </div>
@@ -68,6 +70,7 @@
         <div class="col-lg-4 closed_restaurant">
         <h2>{{ l.name }}</h2>
         <p>{{ l.location }}</p>
+        <p>{{ l.infoString }}</p>
     </div>
 {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
     </div>
