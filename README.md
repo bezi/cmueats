@@ -20,6 +20,7 @@ todo
 - Parsing schedule from CMU web page, not hard-coded
 - Database, not dictionary
 - Python OOP
+- Make 404 page pretty
 
 
 debug instructions
