@@ -11,7 +11,7 @@ Maintained by Oscar and Justin.
 
 todo
 ----
-- Times to open and close
+- ~~Times to open and close~~
 - Google map API integration
 - Tags/types of food
 - Search function
