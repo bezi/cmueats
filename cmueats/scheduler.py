@@ -89,15 +89,17 @@ def timeInfoString(r_time, l_time, restaurant):
                 if tempTime == "midnight":
                     day = tomorrow(strftime("%A", localtime()))
                     new_r_time = restaurant["times"].get(day)
-                    new_r_times = new_r_time.split("-")
-                    if new_r_times[0] == "0000":
-                        if new_r_times[1] != "2400":
-                            return "Closes tomorrow at " + getTime(new_r_times[1]) + "."
-                        while new_r_times[1] == "2400":
+                    new_r_times = new_r_time.split(":")
+                    first_time = new_r_times[0].split("-")
+                    if first_time[0] == "0000":
+                        if first_time[1] != "2400":
+                            return "Closes tomorrow at " + getTime(first_time[1]) + "."
+                        while first_time[1] == "2400":
                             day = tomorrow(day)
                             new_r_time = restaurant["times"].get(day)
-                            new_r_times = new_r_time.split("-")
-                        return "Closes on " + today(day) + " at " + getTime(new_r_times[1]) + "."
+                            new_r_times = new_r_time.split(":")
+                            first_time = new_r_time.split("-")
+                        return "Closes on " + today(day) + " at " + getTime(first_time[1]) + "."
                 return "Closes at " + tempTime + "."
     else:
         times = r_time.split(":")
@@ -111,11 +113,13 @@ def timeInfoString(r_time, l_time, restaurant):
             day = tomorrow(strftime("%A", localtime()))
             r_time = restaurant["times"].get(day)
             if r_time != "":
-                return "Closed until tomorrow at " + getTime(rtime.split("-")[0]) + "."
+                return "Closed until tomorrow at " + getTime(r_time.split("-")[0]) + "."
             while r_time == "":
                 day = tomorrow(strftime("%A", localtime()))
                 r_time = restaurant["times"].get(day)
             return "Closed until " + today(day) + " at " + getTime(rtime.split("-")[0]) + "."
         else:
-            return "Opens at " + getTime(times[0].split("-")[0]) + "."
+            for x in times:
+                if int(x.split("-")[0]) > int(l_time): 
+                    return "Opens at " + getTime(x.split("-")[0]) + "."
     return "Error."
