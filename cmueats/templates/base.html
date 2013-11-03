@@ -2,8 +2,8 @@
 <!doctype html>
 <html>
 <head>
-    {% block header %}
-    {% endblock %}
+    <title>CMU Eats!</title>
+    <meta charset="utf-8">
     <link rel="shortcut icon" href="{% static 'imgs/favicon.ico' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
@@ -18,8 +18,35 @@
       ga('create', 'UA-44051024-1', 'cmueats.com');
       ga('send', 'pageview');
     </script>
+    <style>
+    body {
+      padding-top: 50px;
+    }
+    </style>
+    {% block header %}
+    {% endblock %}
 </head>
 <body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/home/">CMU Eats</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li {% if nav == "home" %} class="active" {% endif %}><a href="/home">Home</a></li>
+            <li {% if nav == "what" %} class="active" {% endif %}><a href="/what/">WTF is this?</a></li>
+            <li {% if nav == "about" %} class="active" {% endif %}><a href="/about/">About</a></li>
+            <li {% if nav == "contact" %} class="active" {% endif %}><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
     {% block content %}
     {% endblock %}
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

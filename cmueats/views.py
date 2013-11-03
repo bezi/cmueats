@@ -10,14 +10,13 @@ from time import strftime
 from random import choice
 
 def about(request):
-  return render_to_response('about.html')
+  return render_to_response('about.html', {'nav': "about"})
 
 def contact(request):
-  return render_to_response('contact.html')
+  return render_to_response('contact.html', {'nav': "contact"})
 
 def what(request):
-  return render_to_response('what.html')
-
+  return render_to_response('what.html', {'nav': "what"})
 
 def home(request):
     data = schedule_data 
@@ -47,11 +46,23 @@ def home(request):
 
     for x in data:
         if x["isOpen"]:
-             openData.append(x)
+            openData.append(x)
         else:
             closedData.append(x)
 
     if not openData:
-        return render_to_response('index.html',{'openLoc' : openData,'closedLoc': closedData, 'bestPick': False})
+        return render_to_response('index.html',
+            { 
+                'nav': "home", 
+                'openLoc' : openData,
+                'closedLoc': closedData, 
+                'bestPick': False
+            })
     
-    return render_to_response('index.html',{'openLoc' : openData,'closedLoc': closedData, 'bestPick': choice(openData)})
+    return render_to_response('index.html',
+            {
+                'nav': "home", 
+                'openLoc' : openData,
+                'closedLoc': closedData, 
+                'bestPick': choice(openData)
+            })
