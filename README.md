@@ -28,18 +28,10 @@ Run a local server (on Linux) using the following commands:
 
 1. Pull the github repository and `cd` to the root of repository
 
-1. Ensure heroku is installed (see distribution specific information).
+2. Ensure heroku is installed (see distribution specific information).
   
   `heroku --version`
 
-2. Create a virtual environment (only needs to be done once) 
-
-  `virtualenv venv --distribute` 
-
-2. Source the virtual environment
-
-  `source venv/bin/activate`
-  
 3. If this is the first time, use pip to install dependencies.
 
   `pip install -r requirements.txt`
