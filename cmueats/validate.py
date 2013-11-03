@@ -3,6 +3,22 @@ from scheduler import getTime
 
 def validate_entry(i):
     # i is an entry for a location
+    # check that every entry has all days
+    if "M" not in i["times"]:
+        return False
+    if "T" not in i["times"]:
+        return False
+    if "W" not in i["times"]:
+        return False
+    if "R" not in i["times"]:
+        return False
+    if "F" not in i["times"]:
+        return False
+    if "S" not in i["times"]:
+        return False
+    if "U" not in i["times"]:
+        return False
+
     for x in i["times"]:
         # val is the times for a day
         val = i["times"].get(x)

@@ -106,7 +106,7 @@ def timeInfoString(r_time, l_time, restaurant):
         done_for_day = True;
         for x in times:
             time = x.split("-")
-            if int(time[0]) > int(l_time):
+            if r_time != "" and int(time[0]) > int(l_time):
                 done_for_day = False
 
         if done_for_day:
@@ -115,9 +115,9 @@ def timeInfoString(r_time, l_time, restaurant):
             if r_time != "":
                 return "Closed until tomorrow at " + getTime(r_time.split("-")[0]) + "."
             while r_time == "":
-                day = tomorrow(strftime("%A", localtime()))
+                day = tomorrow(day)
                 r_time = restaurant["times"].get(day)
-            return "Closed until " + today(day) + " at " + getTime(rtime.split("-")[0]) + "."
+            return "Closed until " + today(day) + " at " + getTime(r_time.split("-")[0]) + "."
         else:
             for x in times:
                 if int(x.split("-")[0]) > int(l_time): 
