@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block header %}
 {% endblock %}
@@ -9,7 +10,7 @@
         <h1>Error: 404</h1>
         <p>Page not found.</p>
         <p>You look lost, like this small, furry creature. 
-            <br><img src="{% static 'imgs/404.gif' %}" alt="404 image"></img>
+        <br><img src="{% static 'imgs/404.gif' %}" alt="404 image"></img>
         </p>
         <p>I mean, this isn't a terribly complicated site.  Just go <a href="/home/">here</a> and you're all set.</p>
     </div>
