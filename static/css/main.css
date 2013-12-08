@@ -9,8 +9,9 @@ h2 {
 }
 
 .open_restaurant {
-    background: #a4c306;
+    background: #3dec3e;
     text-align: center;
+    color: #111;
 }
 
 .closed_restaurant {
