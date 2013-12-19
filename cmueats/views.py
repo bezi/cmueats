@@ -1,5 +1,4 @@
 # Create your views here.
-from schedule_data import schedule_data
 from scheduler import *
 
 from django.http import HttpResponse
@@ -18,8 +17,11 @@ def contact(request):
 def what(request):
   return render_to_response('what.html', {'nav': "what"})
 
+def map(request):
+  return render_to_response('map.html', {'nav' : "map"})
+
 def home(request):
-    data = schedule_data 
+    data = getSchedule()
     openData = [];
     closedData = [];
     for x in data:
@@ -58,7 +60,7 @@ def home(request):
                 'closedLoc': closedData, 
                 'bestPick': False
             })
-    
+
     return render_to_response('index.html',
             {
                 'nav': "home", 

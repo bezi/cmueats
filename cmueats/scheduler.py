@@ -3,6 +3,18 @@
 import string
 from types import NoneType
 from time import strftime, localtime
+from schedule_data import schedules
+
+def getSchedule():
+  date = strftime("%Y%m%d", localtime())
+  for x in schedules:
+    if x == "default":
+      continue
+    dates = x.split("-")
+    if int(dates[0]) <= int(date) and int(date) <= int(dates[1]):
+      return schedules[x]
+
+  return schedules["default"]
 
 def getHours(string):
     return string[:2]
@@ -110,12 +122,15 @@ def timeInfoString(r_time, l_time, restaurant):
                 done_for_day = False
 
         if done_for_day:
+            thisday = strftime("%A", localtime())
             day = tomorrow(strftime("%A", localtime()))
             r_time = restaurant["times"].get(day)
             if r_time != "":
                 return "Closed until tomorrow at " + getTime(r_time.split("-")[0]) + "."
             while r_time == "":
                 day = tomorrow(day)
+                if today(day) == thisday:
+                    return "Closed for this week."
                 r_time = restaurant["times"].get(day)
             return "Closed until " + today(day) + " at " + getTime(r_time.split("-")[0]) + "."
         else:
