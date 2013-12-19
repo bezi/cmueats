@@ -2,7 +2,7 @@
 import json
 import string
 
-from schedule_data import schedule_data
+from schedule_data import schedules
 from time import localtime,strftime
 from types import NoneType
 from random import choice
@@ -22,6 +22,17 @@ def what(request):
 
 def map(request):
   return render_to_response('map.html')
+
+def getSchedule():
+  date = strftime("%Y%m%d", localtime())
+  for x in schedules:
+    if x == "default":
+      continue
+    dates = x.split("-")
+    if int(dates[0]) <= int(date) and int(date) <= int(dates[1]):
+      return schedules[x]
+
+  return schedules["default"]
 
 def getTime(string):
     mins = string[-2:]
@@ -118,7 +129,7 @@ def isOpen(loc):
   return False
 
 def home(request):
-  data = schedule_data 
+  data = getSchedule()
   openData = [];
   closedData = [];
 
