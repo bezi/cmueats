@@ -460,7 +460,7 @@ winter_break1 = [{"name" : "Asiana",
   {
   "name":"El Gallo de Oro",
   "location":"University Center 1st Floor",
-  "times":{"M": "1030-2200",
+  "times":{"M": "",
   "T": "",
   "W": "",
   "R": "1100-1400",
