@@ -1,6 +1,6 @@
 
 /*
- * GET home page.
+ * GET about page.
  */
 
 module.exports = function(req, res){

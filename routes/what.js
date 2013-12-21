@@ -1,6 +1,6 @@
 
 /*
- * GET home page.
+ * GET WTF page.
  */
 
 module.exports = function(req, res){
