@@ -4,5 +4,5 @@
  */
 
 module.exports = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('what', { title: 'Express' });
 };
