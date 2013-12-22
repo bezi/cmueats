@@ -9,6 +9,10 @@ var path = require('path');
 
 var app = express();
 
+var mongo = require('mongodb')
+var monk = require('monk')
+var db = monk('localhost:27017/cmueats')
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -31,8 +35,8 @@ if ('development' == app.get('env')) {
 
 
 // routes
-app.get('/', require('./routes/schedule'));
-app.get('/home', require('./routes/schedule'));
+app.get('/', require('./routes/schedule')(db));
+app.get('/home', require('./routes/schedule')(db));
 app.get('/contact', require('./routes/infoPages').contact);
 app.get('/about', require('./routes/infoPages').about);
 app.get('/what', require('./routes/infoPages').what);
