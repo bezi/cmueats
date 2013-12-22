@@ -16,12 +16,12 @@ function getTimes(storeInfo, date){
 			|| date.isSame(end, "day")) {
 
 			result = storeInfo.schedules[key][date.isoWeekday().toString()]
-			return
-		}
-	});
+		return
+	}
+});
 
 	if (result = "-1") return storeInfo.schedules["default"][date.isoWeekday().toString()]
-	return result
+		return result
 }
 
 // Determines whether the passed store is open or not
@@ -31,10 +31,10 @@ function isOpen(storeInfo){
 
 	if (todaysTimes === "") return false
 
-	var result = false
+		var result = false
 
 	todaysTimes.forEach(function(time){
-		if (time === "") return
+		if (result || time === "") return;
 		var times = time.split('-');
 		var opening = moment(times[0],"HHmm");
 		var closing = moment(times[1],"HHmm");
@@ -47,8 +47,54 @@ function isOpen(storeInfo){
 	return result
 }
 
+function closeTime(storeListing, date){
+	var todaysTimes = getTimes(storeListing, date).split(':')
+	var result = moment("0", "X");
+
+	todaysTimes.forEach(function(time){
+		if (!result.isSame(moment("0", "X"))) return;
+		var times = time.split('-');
+		var opening = moment(date)
+		opening.hour(moment(times[0],"HHmm").hour());
+		opening.minute(moment(times[0],"HHmm").minute());
+		var closing = moment(date)
+		closing.hour(moment(times[1],"HHmm").hour());
+		closing.minute(moment(times[1],"HHmm").minute());
+
+		if (date.isSame(opening) || (date.isAfter(opening) && date.isBefore(closing)) 
+			|| date.isSame(closing))
+			result = closing
+	});
+
+	if (result.isSame(moment("2400", "HHmm")) || result.isSame(moment("0", "X"))) 
+		return closeTime(storeListing, date.startOf('day').add('days', 1));
+	
+	return result.format("X")
+}
+
+function openTime(storeListing, date){
+	var todaysTimes = getTimes(storeListing, date).split(':')
+	var result = moment("0", "X");
+
+	todaysTimes.forEach(function(time){
+		if (!result.isSame(moment("0", "X"))) return
+			var times = time.split('-');
+		var opening = moment(date)
+		opening.hour(moment(times[0],"HHmm").hour());
+		opening.minute(moment(times[0],"HHmm").minute());
+
+		if (date.isSame(opening) || date.isBefore(opening))
+			result = opening
+	});
+
+	if (result.isSame(moment("0", "X"))) 
+		return openTime(storeListing, date.startOf('day').add('days', 1));
+	
+	return result.format("X")
+}
+
 module.exports = function(db){
-    
+
 	return function(req, res){
 		var restaurants = db.get('restaurants');
 
@@ -66,8 +112,10 @@ module.exports = function(db){
 
 				// Determine if restaurant is open or closed
 				if (isOpen(storeListing)){
+					storeInfo.closeDate = closeTime(storeListing, moment())
 					open.push(storeInfo);
 				} else {
+					storeInfo.closeDate = openTime(storeListing, moment())
 					closed.push(storeInfo);
 				}
 
