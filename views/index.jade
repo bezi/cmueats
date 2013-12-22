@@ -1,5 +1,41 @@
-extends layout
+extends base
+block nav
+    +navbar("home");
 
 block content
-  h1= title
-  p Welcome to #{title}
+    div.container
+        // infobar
+        - var openLoc = {"length": 0};
+        - var closedLoc = [];
+        if (openLoc.length == 0)
+            .row.recommendation
+                .span4.offset4
+                    h3 Looks like nothing on campus is open :(
+        else
+            .row.recommendation
+                .span4.offset4
+                    - var randChoice = openLoc[Math.floor(Math.random() * openLoc.length)];
+                        h3 Can't make up your mind?  CMU Eats thinks you should eat at
+                        h1= randChoice.name
+                        p= randChoice.location
+                        p= randChoice.closeDate
+
+        // open locations
+        each loc, index in openLoc
+            if (index % 3 == 0)
+                .row
+        
+            .col-lg-4.open_restaurant
+                h2= loc.name 
+                p= loc.location
+                p= loc.closeDate
+
+        // closed locations
+        each loc, index in closedLoc
+            if (index % 3 == 0)
+                .row
+        
+            .col-lg-4.closed_restaurant
+                h2= loc.name 
+                p= loc.location
+                p= loc.closeDate

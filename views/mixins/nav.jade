@@ -1,0 +1,19 @@
+mixin navbar(active)
+    .navbar.navbar-inverse.navbar-fixed-top
+        .container
+            .navbar-header
+                button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-collapse")
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                a.navbar-brand(href="/home/") CMU Eats
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    li(class=(active=="home")?"active":"")
+                        a(href="/home/") Home
+                    li(class=(active=="what")?"active":"")
+                        a(href="/what/") WTF is this?
+                    li(class=(active=="about")?"active":"")
+                        a(href="/about/") About
+                    li(class=(active=="contact")?"active":"")
+                        a(href="/contact/") Contact us
