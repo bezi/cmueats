@@ -19,21 +19,49 @@ block content
                         p= randChoice.closeDate
 
         // open locations
-        each loc, index in openLoc
-            if (index % 3 == 0)
-                .row
-        
-            .col-lg-4.open_restaurant
-                h2= loc.name 
-                p= loc.location
-                p= loc.closeDate
+        - for (var i = 0; i < openLoc.length; i += 3)
+            .row 
+                if (i < openLoc.length)
+                    -var loc = openLoc[i];
+                    .col-lg-4.open_restaurant
+                        h2= loc.name 
+                        p= loc.location
+                        p= loc.closeDate
 
-        // closed locations
-        each loc, index in closedLoc
-            if (index % 3 == 0)
-                .row
+                if (i + 1 < openLoc.length)
+                    -var loc = openLoc[i + 1];
+                    .col-lg-4.open_restaurant
+                        h2= loc.name 
+                        p= loc.location
+                        p= loc.closeDate
+            
+                if (i + 2 < openLoc.length)
+                    -var loc = openLoc[i + 2];
+                    .col-lg-4.open_restaurant
+                        h2= loc.name 
+                        p= loc.location
+                        p= loc.closeDate
         
-            .col-lg-4.closed_restaurant
-                h2= loc.name 
-                p= loc.location
-                p= loc.closeDate
+        // closed locations
+        - for (var i = 0; i < closedLoc.length; i += 3)
+            .row 
+                if (i < closedLoc.length)
+                    -var loc = closedLoc[i];
+                    .col-lg-4.closed_restaurant
+                        h2= loc.name 
+                        p= loc.location
+                        p= loc.closeDate
+
+                if (i + 1 < closedLoc.length)
+                    -var loc = closedLoc[i + 1];
+                    .col-lg-4.closed_restaurant
+                        h2= loc.name 
+                        p= loc.location
+                        p= loc.closeDate
+            
+                if (i + 2 < closedLoc.length)
+                    -var loc = closedLoc[i + 2];
+                    .col-lg-4.closed_restaurant
+                        h2= loc.name 
+                        p= loc.location
+                        p= loc.closeDate
