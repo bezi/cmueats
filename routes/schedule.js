@@ -1,6 +1,16 @@
 // Schedule logic
+var moment = require('moment');
 
 module.exports = function(req, res){
-    // renders the home page
-    res.render('index');
+    res.render('index', {
+        openLoc: [
+            {
+                name: "Gallo",
+                location:
+            }
+        ],
+        closedLoc: [
+            
+        ]
+    });
 };
