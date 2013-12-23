@@ -54,40 +54,20 @@ block content
                     .col-lg-4.closed_restaurant
                         h2= loc.name 
                         p= loc.location
-                        p.openTime(closeDate=loc.closeDate)  
+                        p.openTime(openDate=loc.closeDate)  
 
                 if (i + 1 < closedLoc.length)
                     -var loc = closedLoc[i + 1];
                     .col-lg-4.closed_restaurant
                         h2= loc.name 
                         p= loc.location
-                        p.openTime(closeDate=loc.closeDate)  
+                        p.openTime(openDate=loc.closeDate)  
             
                 if (i + 2 < closedLoc.length)
                     -var loc = closedLoc[i + 2];
                     .col-lg-4.closed_restaurant
                         h2= loc.name 
                         p= loc.location
-                        p.openTime(closeDate=loc.closeDate)  
+                        p.openTime(openDate=loc.closeDate)  
     script(src="/js/moment.min.js")
-    script.
-        function updateCountdown() {
-            var currTime = moment().format("X");
-            var openLocs = document.getElementsByClassName("closeTime");
-            var closedLocs = document.getElementsByClassName("openTime");
-
-            for (var i = 0; i < openLocs.length; ++i) {
-                var loc = openLocs[i];
-                var locTime = moment(loc.attributes.closeDate.value, "X");
-                loc.innerHTML = "Closes " + locTime.calendar().charAt(0).toLowerCase() + locTime.calendar().slice(1);
-            }
-
-            for (var i = 0; i < closedLocs.length; ++i) {
-                var loc = closedLocs[i];
-                var locTime = moment(loc.attributes.closeDate.value, "X");
-                loc.innerHTML = "Opens " + locTime.calendar().charAt(0).toLowerCase() + locTime.calendar().slice(1);
-            }
-        }
-
-        updateCountdown();
-        setTimeout(updateCountdown, 60000);
+    script(src="/js/time.js")
