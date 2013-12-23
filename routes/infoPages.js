@@ -11,5 +11,13 @@ module.exports = {
 
     contact: function(req, res) {
         res.render('contact');
+    },
+    
+    notFound: function(req, res) {
+        res.render('404', { url: "404" });
+    },
+    
+    error: function(req, res) {
+        res.render('500');
     }
 }

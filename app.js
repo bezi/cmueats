@@ -39,7 +39,10 @@ app.get('/home', require('./routes/schedule')(db));
 app.get('/contact', require('./routes/infoPages').contact);
 app.get('/about', require('./routes/infoPages').about);
 app.get('/what', require('./routes/infoPages').what);
-// 404 page
+app.get('/404', require('./routes/infoPages').notFound);
+app.get('/500', require('./routes/infoPages').error);
+
+// 404 handler
 app.use(function(req, res, next){
   res.status(404);
   // respond with html page
@@ -56,6 +59,11 @@ app.use(function(req, res, next){
   res.type('txt').send('Not found');
 });
 
-http.createServer(app).listen(app.get('port'), function(){
+// 500 handler
+app.use(function(err, req, res, next){
+  res.render('500');
+});
+
+http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
