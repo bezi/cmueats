@@ -2,7 +2,7 @@ cmueats
 =======
 
 Webapp for finding when Carnegie Mellon University's many eating locations are open.
-Implemented with Django and hosted on heroku.
+Implemented with Node.js and Express and hosted on Heroku.
 
 Currently hosted at [cmueats.com](http://www.cmueats.com).  
 
@@ -12,38 +12,30 @@ Maintained by Oscar and Justin.
 todo
 ----
 - ~~Times to open and close~~
+- ~~Port to Node.js~~
 - Google map API integration
 - Tags/types of food
 - Search function
-- Countdown timer to open and close
+- ~~Countdown timer to open and close~~
 - Mobile apps for iOS and Android
 - Parsing schedule from CMU web page, not hard-coded
 - Database, not dictionary
-- Python OOP
-- Make 404 page pretty
+- Make 404/500 page pretty
 
 
 debug instructions
 ------------------
 
-Run a local server (on Linux) using the following commands:
+Run a local server using the following commands:
 
 1. Pull the github repository and `cd` to the root of repository
 
-2. Ensure heroku is installed (see distribution specific information).
-  
-  `heroku --version`
+2. If this is the first time, use npm to install dependencies.
 
-3. If this is the first time, use pip to install dependencies.
+  `npm install`
 
-  `pip install -r requirements.txt`
+3. Run the server
 
-3. Collect the static files
+  `node app.js`
 
-  `python manage.py collectstatic`
-
-4. Run the server
-
-  `python manage.py runserver`
-
-5. Open `localhost:8000` in your browser of choice.
+4. Open `localhost:3000` in your browser of choice.
