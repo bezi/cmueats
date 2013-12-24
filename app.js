@@ -11,7 +11,7 @@ var app = express();
 
 var mongo = require('mongodb')
 var monk = require('monk')
-var db = monk('mongodb://justin:hijustin@ds061318.mongolab.com:61318/schedules')
+var db = monk('mongodb://reader:Public@ds061318.mongolab.com:61318/schedules')
 
 // all environments
 app.set('port', process.env.PORT || 3000);
