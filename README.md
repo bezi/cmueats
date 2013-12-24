@@ -13,13 +13,13 @@ todo
 ----
 - ~~Times to open and close~~
 - ~~Port to Node.js~~
+- ~~Countdown timer to open and close~~
+- ~~Database, not dictionary~~
 - Google map API integration
 - Tags/types of food
 - Search function
-- ~~Countdown timer to open and close~~
 - Mobile apps for iOS and Android
 - Parsing schedule from CMU web page, not hard-coded
-- Database, not dictionary
 - Make 404/500 page pretty
 
 
