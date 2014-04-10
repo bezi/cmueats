@@ -8,19 +8,23 @@ block content
         - openLoc.sort(function (a,b) { return (a.closeDate) - (b.closeDate); });
         - closedLoc.sort(function (a,b) { return (a.closeDate) - (b.closeDate); });
 
+        .row.psa
+            .span4.offset4
+                h3 Updated for Carnival 2014!
+
         // infobar
-        if (openLoc.length == 0)
-            .row.recommendation
-                .span4.offset4
-                    h3 Looks like nothing on campus is open :(
-        else
-            .row.recommendation
-                .span4.offset4
-                    - var randChoice = openLoc[Math.floor(Math.random() * openLoc.length)];
-                        h3 Can't make up your mind?  CMU Eats thinks you should eat at
-                        h1= randChoice.name
-                        p= randChoice.location
-                        p.closeTime(closeDate=randChoice.closeDate)  
+        //- if (openLoc.length == 0)
+        //-     .row.recommendation
+        //-         .span4.offset4
+        //-             h3 Looks like nothing on campus is open :(
+        //- else
+        //-     .row.recommendation
+        //-         .span4.offset4
+        //-             - var randChoice = openLoc[Math.floor(Math.random() * openLoc.length)];
+        //-                 h3 Can't make up your mind?  CMU Eats thinks you should eat at
+        //-                 h1= randChoice.name
+        //-                 p= randChoice.location
+        //-                 p.closeTime(closeDate=randChoice.closeDate)  
 
         // open locations
         - for (var i = 0; i < openLoc.length; i += 3)
