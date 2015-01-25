@@ -318,13 +318,43 @@ db.restaurants.insert([{
 	"location": "Resnik Servery",
 	"schedules": {
 		"default": {
-			"1": "1100-1430:1700-2100",
-			"2": "1100-1430:1700-2100",
-			"3": "1100-1430:1700-2100",
-			"4": "1100-1430:1700-2100",
-			"5": "1100-1430:1700-2100",
+			"1": "",
+			"2": "",
+			"3": "",
+			"4": "",
+			"5": "",
 			"6": "1700-2100",
 			"7": "1700-2100"
+		}
+	},
+	"tags": []
+}, {
+	"name": "El Burrito Grande",
+	"location": "Resnik Servery",
+	"schedules": {
+		"default": {
+			"1": "1130-1430",
+			"2": "",
+			"3": "",
+			"4": "1130-1430"",
+			"5": "1130-1430"",
+			"6": """,
+			"7": ""
+		}
+	},
+	"tags": []
+}, {
+	"name": "Stir Crazy",
+	"location": "Resnik Servery",
+	"schedules": {
+		"default": {
+			"1": "",
+			"2": "1130-1430"",
+			"3": "1130-1430"",
+			"4": "",
+			"5": "",
+			"6": "",
+			"7": ""
 		}
 	},
 	"tags": []
@@ -333,13 +363,13 @@ db.restaurants.insert([{
 	"location": "Resnik Servery",
 	"schedules": {
 		"default": {
-			"1": "1100-1430:1700-2100",
-			"2": "1100-1430:1700-2100",
-			"3": "1100-1430:1700-2100",
-			"4": "1100-1430:1700-2100",
-			"5": "1100-1430:1700-2100",
-			"6": "1700-2100",
-			"7": "1700-2100"
+			"1": "",
+			"2": "",
+			"3": "",
+			"4": "1700-2100",
+			"5": "1700-2100",
+			"6": "",
+			"7": ""
 		}
 	},
 	"tags": []
@@ -359,7 +389,7 @@ db.restaurants.insert([{
 	},
 	"tags": []
 }, {
-	"name": "Resnik Cafe Express",
+	"name": "Breakfast Express",
 	"location": "Resnik Servery",
 	"schedules": {
 		"default": {
@@ -435,6 +465,21 @@ db.restaurants.insert([{
 	"tags": []
 }, {
 	"name": "Tartans Pavilion",
+	"location": "Tartans Pavilion",
+	"schedules": {
+		"default": {
+			"1": "1100-2300",
+			"2": "1100-2300",
+			"3": "1100-2300",
+			"4": "1100-2300",
+			"5": "1100-2300",
+			"6": "1700-2300",
+			"7": "1700-2300"
+		}
+	},
+	"tags": []
+}, {
+	"name": "Pasta Veloce",
 	"location": "Tartans Pavilion",
 	"schedules": {
 		"default": {
