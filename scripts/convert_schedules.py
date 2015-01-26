@@ -5,9 +5,8 @@ import json
 
 def time_string_to_obj(string, day):
     return {
-        'day': 1 if day == '7' else int(day) + 1,
-        'hour': int(string[:2]),
-        'minute': int(string[2:])
+        'day': int(day),
+        'time': string[:2] + ':' + string[2:]
     }
 
 
@@ -17,13 +16,11 @@ def combine_periods(periods):
     while i < len(periods) and len(periods) > 1:
         nexti = (i + 1) % len(periods)
 
-        if (periods[i]['end']['hour'] == 24 and
+        if (periods[i]['end']['time'] == '24:00' and
             (periods[i]['end']['day'] + 1 if periods[i]['end']['day'] < 7 else 1) == periods[nexti]['start']['day'] and
-            periods[nexti]['start']['hour'] == 0 and
-            periods[nexti]['start']['minute'] == 0):
+            periods[nexti]['start']['time'] == '00:00'):
             periods[i]['end']['day'] = periods[nexti]['end']['day']
-            periods[i]['end']['hour'] = periods[nexti]['end']['hour']
-            periods[i]['end']['minute'] = periods[nexti]['end']['minute']
+            periods[i]['end']['time'] = periods[nexti]['end']['time']
             periods.pop(nexti)
         else:
             i += 1
@@ -32,13 +29,13 @@ def combine_periods(periods):
         start = item['start']
         end = item['end']
 
-        if start['hour'] == 24:
+        if start['time'] == '24:00':
             start['day'] = 1 if start['day'] == 7 else start['day'] + 1
-            start['hour'] = 0
+            start['time'] = '00:00'
 
-        if end['hour'] == 24:
+        if end['time'] == '24:00':
             end['day'] = 1 if end['day'] == 7 else end['day'] + 1
-            end['hour'] = 0
+            end['time'] = '00:00'
 
     return periods
 
@@ -64,7 +61,7 @@ def parse_periods(schedule):
                 'end': time_string_to_obj(period.split('-')[1], day)
             })
 
-    periods = sorted(periods, key=lambda period: (period['start']['day'], period['start']['hour'], period['start']['minute']))
+    periods = sorted(periods, key=lambda period: (period['start']['day'], period['start']['time']))
 
     periods = combine_periods(periods)
 
