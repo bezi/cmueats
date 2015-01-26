@@ -68,13 +68,9 @@ def parse_periods(schedule):
     return periods
 
 def parse_data(js):
-    calendar = []
+    calendar = {}
     for loc in js:
-        obj = {
-            'eatery': loc['name'],
-            'periods': parse_periods(loc['schedules']['default'])
-        }
-        calendar.append(obj)
+        calendar[loc['name']] = parse_periods(loc['schedules']['default'])
 
     return {'startDate': None, 'endDate': None, 'calendar': calendar}
 
