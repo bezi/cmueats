@@ -1,0 +1,49 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #333;
+    background: #333;
+    font-size: 14px;
+    line-height: 1.42857143;
+    box-sizing: border-box;
+}
+
+p {
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 0px;
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+.box, .open_eatery, .closed_eatery {
+    background: #32cd32;
+    text-align: center;
+    width: 100%;
+    float: left;
+}
+
+.closed_eatery {
+    background: #db221d;
+}
+
+.psa {
+    background:#fff380;
+    width: 100%;
+}
+
+@media (min-width: 720px) {
+    .open_eatery, .closed_eatery {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1300px) {
+    .open_eatery, .closed_eatery {
+        width: 25%;
+    }
+}
