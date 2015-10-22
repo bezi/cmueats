@@ -23,7 +23,7 @@ h2 {
 }
 
 .box, .open_eatery, .closed_eatery {
-    background: #2ecc71;
+    background: rgba(51, 224, 124, 0.73);
     text-align: center;
     width: 100%;
     float: left;
@@ -35,7 +35,7 @@ h2 {
 }
 
 .closed_eatery {
-    background: #e74c3c;
+    background: rgb(247, 130, 118);
 }
 
 .psa {
