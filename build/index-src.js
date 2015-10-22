@@ -133,7 +133,6 @@ var Eatery = React.createClass({
       <div className={className}>
       <h2>{this.props.eatery.name}</h2>
       <p>{this.props.eatery.location}</p>
-      <p>{message}</p>
       </div>
     );
   }

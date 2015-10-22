@@ -1,8 +1,9 @@
 body {
     padding: 0;
     margin: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: #333;
+    /* Credit to Rehan for the bitchin' font <3 */
+    font-family: 'Lato', sans-serif;
+    color: #313131;
     background: #333;
     font-size: 14px;
     line-height: 1.42857143;
@@ -18,6 +19,7 @@ h2 {
     margin-top: 0px;
     padding-top: 20px;
     font-size: 30px;
+    font-weight: 900;
 }
 
 .box, .open_eatery, .closed_eatery {
@@ -28,7 +30,7 @@ h2 {
 }
 
 .closed_eatery {
-    background: #db221d;
+    background: #e74c3c;
 }
 
 .psa {
