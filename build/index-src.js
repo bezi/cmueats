@@ -53,31 +53,23 @@ var genEateryMetadata = function (eatery, currTime) {
   var times = eatery.times;
   var currTimeInt = apiFmtToInt(dateToAPIFmt(currTime));
 
-  // First, figure out if we're open.
-  var isOpen = times
-    .map(function (slot) {
-      var start = apiFmtToInt(slot.start);
-      var end = apiFmtToInt(slot.end);
-
-      // Check to see if the start date is before the end date in the week.
-      if (start < end) {
-        return start <= currTimeInt && currTimeInt < end;
-      } else {
-        // Time wraps over Saturday/Sunday boundary.
-        return start <= currTimeInt || currTimeInt < end;
-      }
-    })
-    .reduce(function (a, b) { return a || b; }, false);
-
-  // Next, figure out the next time by generating all the relevant times
-  // (opening times if we're closed, closing times if we're open).
-  var slots = times.map((slot) => apiFmtToInt(isOpen ? slot.end : slot.start));
-
-  // Keeps track of the first index after the largest time strictly less than
-  // the current time.
+  var isOpen = false;
   var idx = 0;
-  for (var i = 0; i < slots.length; ++i) {
-    if (slots[i] < currTimeInt) { idx = (i + 1) % slots.length; }
+
+  for (var i = 0; i < times.length; ++i) {
+    var slot = times[i];
+
+    var startTime = apiFmtToInt(slot.start);
+    var endTime = apiFmtToInt(slot.end);
+
+    if (startTime <= currTimeInt && currTimeInt < endTime) {
+      isOpen = true;
+      idx = i;
+      break;
+    } else if (startTime > currTimeInt) {
+      idx = i;
+      break;
+    }
   }
 
   return {
@@ -133,6 +125,7 @@ var Eatery = React.createClass({
       <div className={className}>
       <h2>{this.props.eatery.name}</h2>
       <p>{this.props.eatery.location}</p>
+      <p>{message}</p>
       </div>
     );
   }
