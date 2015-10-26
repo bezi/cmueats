@@ -3,6 +3,39 @@
 //==============================================================================
 'use strict';
 
+/* @brief Returns a function that converts times in API format (a relative time
+ * measure) into an absolute time.
+ *
+ * In particular, this function will convert from the API format into the first
+ * date in the future that matches the API format.  The reason this is not a
+ * direct function is so that every future invocation of the function will use
+ * the same Date.now().
+ *
+ * @param currTime String The current date serialized.
+ */
+var getAPIFmtConversion = (currTime) => {
+  /* @brief Concert the API Date into the first future date that matches the API
+   * date.
+   * @param apiDate Object A time formatted in the API format.
+   */
+  var now = new Date(currTime);
+
+  return function (apiDate) {
+    var ret = new Date(now);
+    var dateOffset = (apiDate.day + 7 - ret.getDay() + 1) % 7;
+    ret.setDate(ret.getDate() + dateOffset);
+    ret.setHours(apiDate.hour);
+    ret.setMinutes(apiDate.min);
+    ret.setSeconds(0);
+
+    // If we're on the same day, the offset will be zero.  This checks if the
+    // hour is before us in the day and thus should be pushed to next week.
+    if (ret < now) { ret.setDate(ret.getDate() + 7); }
+
+    return ret.toJSON();
+  };
+};
+
 /* @brief Returns the input time in the same format as the API.
  *
  * @param date String The current time serialized into JSON.
@@ -23,18 +56,6 @@ var dateToAPIFmt = function (date) {
  */
 var apiFmtToInt  = (time) => 10000 * time.day + 100 * time.hour + time.min;
 
-/* @brief Comparison function conforming to Array.prototype.sort() format for
- * comparing two dates in API format.
- *
- * @param dateA Object A time formatted in the API format.
- * @param dateB Object A time formatted in the API format.
- */
-var apiFmtCompare = function(dateA, dateB) {
-  var a = apiFmtToInt(dateA);
-  var b = apiFmtToInt(dateB);
-  return a - b;
-};
-
 //==============================================================================
 // Utility functions for mutating eatery data.
 //==============================================================================
@@ -45,7 +66,8 @@ var apiFmtCompare = function(dateA, dateB) {
  * nextTime: If the eatery is closed, when it will open.  If it is open, when
  * it will close.
  *
- * @param eatery Object An eatery, as returned by the API.
+ * @param eatery Object An eatery, as returned by the API and then whose times
+ * are mutated into proper absolute times.
  * @param currTime String The current time, serialized into JSON.
  */
 var genEateryMetadata = function (eatery, currTime) {
@@ -53,28 +75,35 @@ var genEateryMetadata = function (eatery, currTime) {
   var times = eatery.times;
   var currTimeInt = apiFmtToInt(dateToAPIFmt(currTime));
 
-  var isOpen = false;
-  var idx = 0;
+  // First, figure out if we're open.
+  var isOpen = times
+    .map(function (slot) {
+      var start = apiFmtToInt(slot.start);
+      var end = apiFmtToInt(slot.end);
 
-  for (var i = 0; i < times.length; ++i) {
-    var slot = times[i];
+      // Check to see if the start date is before the end date in the week.
+      if (start < end) {
+        return start <= currTimeInt && currTimeInt < end;
+      } else {
+        // Time wraps over Saturday/Sunday boundary.
+        return start <= currTimeInt || currTimeInt < end;
+      }
+    })
+    .reduce(function (a, b) { return a || b; }, false);
 
-    var startTime = apiFmtToInt(slot.start);
-    var endTime = apiFmtToInt(slot.end);
-
-    if (startTime <= currTimeInt && currTimeInt < endTime) {
-      isOpen = true;
-      idx = i;
-      break;
-    } else if (startTime > currTimeInt) {
-      idx = i;
-      break;
-    }
-  }
+  var converter = getAPIFmtConversion(currTime);
+  var nextTime = times
+		.map(function (slot) {
+	    if (isOpen) {
+        return converter(slot.end);
+      } else {
+        return converter(slot.start);
+      }
+		}).sort()[0];
 
   return {
     isOpen: isOpen,
-    nextTime: isOpen ? times[idx].end : times[idx].start,
+    nextTime: nextTime
   };
 };
 
@@ -86,18 +115,8 @@ var genEateryMetadata = function (eatery, currTime) {
  * @param date Object The next relevant time, in API format.
  */
 function getEateryTagline(now, isOpen, date) {
-  var newDate = new Date(now);
-  var isSameDay = newDate.getDay() === date.day;
-  var isAfter = apiFmtToInt(dateToAPIFmt(newDate)) > apiFmtToInt(date);
-  if (!isSameDay || (isSameDay && isAfter)) {
-    newDate.setDate(newDate.getDate() + (date.day - 1 - newDate.getDay() + 7) % 7 + 1);
-  }
-  newDate.setHours(date.hour);
-  newDate.setMinutes(date.min);
-  newDate.setSeconds(0);
-  newDate.setMilliseconds(0);
 
-  var locTime = moment(newDate);
+  var locTime = moment(date);
   var str = isOpen ? "Closes in " : "Opens in ";
   str += locTime.fromNow().charAt(0).toLowerCase() + locTime.fromNow().slice(1);
   str += " (" + locTime.calendar() + ")";
@@ -188,11 +207,11 @@ var EateryContainer = React.createClass({
 
     var open = computedData
       .filter((loc) => loc.isOpen)
-      .sort((a, b) => apiFmtCompare(a.nextTime, b.nextTime));
+      .sort((a, b) => (new Date(a.nextTime)) - (new Date(b.nextTime)));
 
     var closed = computedData
       .filter((loc) => !loc.isOpen)
-      .sort((a, b) => apiFmtCompare(a.nextTime, b.nextTime));
+      .sort((a, b) => (new Date(a.nextTime)) - (new Date(b.nextTime)));
 
     return (
       <div className="eateryContainer">
