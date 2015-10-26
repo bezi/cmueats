@@ -134,11 +134,11 @@ var Eatery = React.createClass({
 var EateryList = React.createClass({
   render: function () {
     var eateries = this.props.eateryList
-      .map(function (eatery) {
-        return (
+      .map((eatery) =>
+        (
           <Eatery key={eatery.name} eatery={eatery} time={this.props.time} />
-        );
-      }.bind(this));
+        )
+      );
 
     return (
       <div className="eateryList">
@@ -157,12 +157,12 @@ var EateryContainer = React.createClass({
   },
   reloadFromServer: function() {
     // Get clean data from the server.
-    $.getJSON(this.props.url, function (data) {
+    $.getJSON(this.props.url, (data) =>
       this.setState({
         eateries: data.locations,
         currentTime: (new Date(Date.now())).toJSON(),
-      });
-    }.bind(this));
+      })
+    );
   },
   reloadUI: function() {
     // Add explicit reload for when the time goes up.
@@ -179,13 +179,12 @@ var EateryContainer = React.createClass({
     setInterval(this.reloadFromServer, serverTimeout);
   },
   render: function () {
-
-    var computedData = this.state.eateries.map(function (loc) {
+    var computedData = this.state.eateries.map((loc) => {
         var meta = genEateryMetadata(loc, this.state.currentTime);
         loc.isOpen = meta.isOpen;
         loc.nextTime = meta.nextTime;
         return loc;
-      }.bind(this));
+      });
 
     var open = computedData
       .filter((loc) => loc.isOpen)
