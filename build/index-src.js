@@ -22,7 +22,7 @@ var getAPIFmtConversion = (currTime) => {
 
   return function (apiDate) {
     var ret = new Date(now);
-    var dateOffset = (apiDate.day + 7 - ret.getDay() + 1) % 7;
+    var dateOffset = (apiDate.day + 7 - ret.getDay()) % 7;
     ret.setDate(ret.getDate() + dateOffset);
     ret.setHours(apiDate.hour);
     ret.setMinutes(apiDate.min);
