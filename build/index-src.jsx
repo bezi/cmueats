@@ -117,7 +117,7 @@ var genEateryMetadata = function (eatery, currTime) {
 function getEateryTagline(now, isOpen, date) {
 
   var locTime = moment(date);
-  var str = isOpen ? "Closes in " : "Opens in ";
+  var str = isOpen ? "Closes " : "Opens ";
   str += locTime.fromNow().charAt(0).toLowerCase() + locTime.fromNow().slice(1);
   str += " (" + locTime.calendar() + ")";
 
