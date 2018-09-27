@@ -46,7 +46,8 @@ var getAPIFmtConversion = function(e) {
   Eatery = React.createClass({
     render: function() {
       var e, t = getEateryTagline(this.props.time, this.props.eatery.isOpen, this.props.eatery.nextTime);
-      return e = this.props.eatery.isOpen ? "open_eatery" : "closed_eatery", React.createElement("div", {
+      return e = this.props.eatery.isOpen ? "open_eatery" : "closed_eatery",
+        React.createElement("div", {
           className: 'card'
         },
         React.createElement("span", {
