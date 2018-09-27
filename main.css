@@ -58,14 +58,15 @@ body.fade-out {
 
 .psa h2 {
   font-size: 2.8em;
-  font-weight: 300;
+  font-weight: 600;
 }
 
 .card {
   margin: 0 auto;
   width: 20rem;
   padding: 20px;
-  height: 150px;
+  margin-bottom: 1rem !important;
+  height: 130px;
 }
 
 .logo-type {
@@ -78,6 +79,10 @@ body.fade-out {
 .card-title {
   display: inline-block;
   padding-left: 1vw;
+}
+
+.card-subtitle, .card-text {
+  font-weight: 500;
 }
 
 @media (max-width: 575.98px) {
