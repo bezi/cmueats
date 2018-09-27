@@ -48,20 +48,20 @@ var getAPIFmtConversion = function(e) {
       var e, t = getEateryTagline(this.props.time, this.props.eatery.isOpen, this.props.eatery.nextTime);
       return e = this.props.eatery.isOpen ? "open_eatery" : "closed_eatery",
         React.createElement("div", {
-          className: 'card'
-        },
-        React.createElement("span", {
-          className: e
-        }),
-        React.createElement("h5", {
-          className: 'card-title'
-        }, this.props.eatery.name),
-        React.createElement("h6", {
-          className: 'card-subtitle mb-2 text-muted'
-        }, this.props.eatery.location),
-        React.createElement("p", {
-          className: 'card-text'
-        }, t))
+            className: 'card'
+          },
+          React.createElement("span", {
+            className: e
+          }),
+          React.createElement("h5", {
+            className: 'card-title'
+          }, this.props.eatery.name),
+          React.createElement("h6", {
+            className: 'card-subtitle mb-2 text-muted'
+          }, this.props.eatery.location),
+          React.createElement("p", {
+            className: 'card-text'
+          }, t))
     }
   }),
   EateryList = React.createClass({
