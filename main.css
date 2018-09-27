@@ -138,7 +138,7 @@ body.fade-out {
   }
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1350px) {
   .card-columns {
     column-count: 4;
   }
