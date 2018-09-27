@@ -142,6 +142,10 @@ body.fade-out {
   .card-columns {
     column-count: 4;
   }
+
+  .card {
+    height: 130px;
+  }
 }
 
 @media (max-width: 767px) {
