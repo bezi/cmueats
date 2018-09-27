@@ -148,6 +148,16 @@ body.fade-out {
   }
 }
 
+@media (min-width: 1600px) {
+  .card-columns {
+    column-count: 5;
+  }
+
+  .card {
+    height: 130px;
+  }
+}
+
 @media (max-width: 767px) {
   .desktop-only {
     display: none;
