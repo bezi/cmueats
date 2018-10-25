@@ -1,55 +1,171 @@
 body {
-    padding: 0;
-    margin: 0;
-    /* Credit to Rehan for the bitchin' font <3 */
-    font-family: 'Lato', sans-serif;
-    color: #313131;
-    background: white;
-    font-size: 14px;
-    line-height: 1.42857143;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* Credit to Rehan for the bitchin' font <3 */
+  /* sorry Rehan */
+  font-family: "jaf-facitweb", sans-serif !important;
+  color: #313131;
+  background: white;
+  font-size: 14px;
+  line-height: 1.42857143;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: 1s opacity;
 }
 
-p {
-    margin-bottom: 0px;
-    padding-bottom: 10px;
+h5 {
+  font-weight: 600;
 }
 
-h2 {
-    margin-top: 0px;
-    padding-top: 20px;
-    font-size: 30px;
-    font-weight: 900;
+body.fade-out {
+  opacity: 0;
+  transition: none;
 }
 
-.box, .open_eatery, .closed_eatery {
-    background: rgba(51, 224, 124, 0.73);
-    text-align: center;
-    width: 100%;
-    float: left;
-    border-width: 1px;
-    border-color: white;
-    border-style: solid;
-    border-radius: 4px;
+.box-shadow {
+  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.12);
+  padding: 20px;
+}
+
+.open_eatery, .closed_eatery {
+  display: inline-block;
+  border-radius: 50%;
+  width: 50%;
+  background-color: #EEE;
+  height: 12px;
+  width: 12px;
+  margin: 0px;
+  margin-bottom: 2px;
+}
+
+.open_eatery {
+  background-color: #19b875;
+}
+
+.soon_eatery {
+  animation: blinker 0.5s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 .closed_eatery {
-    background: rgb(247, 130, 118);
+  background-color: #dd3c18;
+}
+
+.content-container {
+  padding-top: 10vh;
 }
 
 .psa {
-    background: white;
+  background: white;
+  width: 100%;
+  padding-bottom: 4vh;
+}
+
+.psa h2 {
+  font-size: 2.8em;font-weight: 600;
+}
+
+.card {
+  margin: 0 auto;
+  width: 20rem;
+  padding: 20px;
+  margin-bottom: 1rem !important;
+  height: 120px;
+}
+
+.logo-type {
+  font-weight: bold;
+  font-size: 1.4em;
+  font-weight: 800;
+  color: #dd3c18 !important;
+}
+
+.card-title {
+  display: inline-block;
+  padding-left: 1vw;
+}
+
+.card-subtitle, .card-text {
+  font-weight: 500;
+}
+
+@media (max-width: 575.98px) {
+  .psa h2 {
+    font-size: 2.5em;
+    line-height: 1.3em;
+  }
+
+  .card-title {
+    padding-left: 0vw;
+  }
+
+  .card {
     width: 100%;
+    height: 165px;
+  }
+
+  .card-title {
+    padding-top: 2vh;
+  }
 }
 
-@media (min-width: 720px) {
-    .open_eatery, .closed_eatery {
-        width: 50%;
-    }
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 2;
+  }
 }
 
-@media (min-width: 1300px) {
-    .open_eatery, .closed_eatery {
-        width: 25%;
-    }
+@media (min-width: 768px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 992px) {
+  .card-columns {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-columns {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1350px) {
+  .card-columns {
+    column-count: 4;
+  }
+
+  .card {
+    height: 130px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .card-columns {
+    column-count: 5;
+  }
+
+  .card {
+    height: 130px;
+  }
+}
+
+@media (max-width: 767px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
 }
