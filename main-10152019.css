@@ -15,6 +15,10 @@ body {
   transition: 1s opacity;
 }
 
+.bg-dark {
+  background: #23272A !important;
+}
+
 h5 {
   font-weight: 600;
 }
@@ -34,7 +38,8 @@ body.fade-out {
   width: 12px;
   margin: 0px;
   margin-bottom: 2px;
-  margin-left: 0.5rem;;
+  margin-left: 0.5rem;
+  ;
 }
 
 .open_eatery {
@@ -42,12 +47,26 @@ body.fade-out {
   animation: blinking 1s linear infinite;
 }
 
-@keyframes blinking{
-  0%{     opacity: 0;    }
-  49%{    opacity: 1; }
-  50%{    opacity: 1; }
-  75%{    opacity: 1;  }
-  100%{   opacity: 0;    }
+@keyframes blinking {
+  0% {
+    opacity: 0;
+  }
+
+  49% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .closed_eatery {
