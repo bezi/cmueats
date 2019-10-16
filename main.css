@@ -3,9 +3,11 @@ body {
   margin: 0;
   /* Credit to Rehan for the bitchin' font <3 */
   /* sorry Rehan */
-  font-family: "jaf-facitweb", sans-serif !important;
-  color: #313131;
-  background: white;
+  font-family: "jaf-facitweb", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: white;
+  background: #2C2F33;
   font-size: 14px;
   line-height: 1.42857143;
   box-sizing: border-box;
@@ -22,12 +24,8 @@ body.fade-out {
   transition: none;
 }
 
-.box-shadow {
-  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.12);
-  padding: 20px;
-}
-
-.open_eatery, .closed_eatery {
+.open_eatery,
+.closed_eatery {
   display: inline-block;
   border-radius: 50%;
   width: 50%;
@@ -36,20 +34,20 @@ body.fade-out {
   width: 12px;
   margin: 0px;
   margin-bottom: 2px;
+  margin-left: 0.5rem;;
 }
 
 .open_eatery {
   background-color: #19b875;
+  animation: blinking 1s linear infinite;
 }
 
-.soon_eatery {
-  animation: blinker 0.5s linear infinite;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
+@keyframes blinking{
+  0%{     opacity: 0;    }
+  49%{    opacity: 1; }
+  50%{    opacity: 1; }
+  75%{    opacity: 1;  }
+  100%{   opacity: 0;    }
 }
 
 .closed_eatery {
@@ -61,21 +59,30 @@ body.fade-out {
 }
 
 .psa {
-  background: white;
   width: 100%;
   padding-bottom: 4vh;
 }
 
 .psa h2 {
-  font-size: 2.8em;font-weight: 600;
+  font-size: 2.8em;
+  font-weight: 600;
 }
 
 .card {
   margin: 0 auto;
+  background: #23272A;
   width: 20rem;
   padding: 20px;
   margin-bottom: 1rem !important;
-  height: 120px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.announcement {
+  background: #23272A;
+}
+
+.border-bottom-custom {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .logo-type {
@@ -87,10 +94,11 @@ body.fade-out {
 
 .card-title {
   display: inline-block;
-  padding-left: 1vw;
+  padding: 0;
 }
 
-.card-subtitle, .card-text {
+.card-subtitle,
+.card-text {
   font-weight: 500;
 }
 
@@ -106,11 +114,6 @@ body.fade-out {
 
   .card {
     width: 100%;
-    height: 165px;
-  }
-
-  .card-title {
-    padding-top: 2vh;
   }
 }
 
