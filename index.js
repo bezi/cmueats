@@ -192,7 +192,7 @@ var getAPIFmtConversion = function(e) {
   });
 ReactDOM.render(
   React.createElement(EateryContainer, {
-    url: "http://apis.scottylabs.org/dining/v1/locations"
+    url: "https://apis.scottylabs.org/dining/v1/locations"
   }),
   document.getElementById("content")
 );
