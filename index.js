@@ -87,9 +87,9 @@ var getAPIFmtConversion = function(e) {
             })
           ),
           React.createElement(
-            "h6",
+            "p",
             {
-              className: "card-subtitle mb-2 text-muted"
+              className: "card-subtitle pb-2 tagline text-muted"
             },
             this.props.eatery.location
           ),
