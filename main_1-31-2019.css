@@ -1,13 +1,20 @@
+@import url("https://rsms.me/inter/inter.css");
+body {
+  font-family: "Inter", sans-serif !important;
+}
+@supports (font-variation-settings: normal) {
+  body {
+    font-family: "Inter var", sans-serif !important;
+  }
+}
+
 body {
   padding: 0;
   margin: 0;
   /* Credit to Rehan for the bitchin' font <3 */
   /* sorry Rehan */
-  font-family: "jaf-facitweb", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Helvetica, Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: white;
-  background: #2C2F33;
+  background: #2c2f33;
   font-size: 14px;
   line-height: 1.42857143;
   box-sizing: border-box;
@@ -16,7 +23,7 @@ body {
 }
 
 .bg-dark {
-  background: #23272A !important;
+  background: #23272a !important;
 }
 
 h5 {
@@ -28,18 +35,21 @@ body.fade-out {
   transition: none;
 }
 
+.font-weight-boldest {
+  font-weight: 700;
+}
+
 .open_eatery,
 .closed_eatery {
   display: inline-block;
   border-radius: 50%;
   width: 50%;
-  background-color: #EEE;
+  background-color: #eee;
   height: 12px;
   width: 12px;
   margin: 0px;
   margin-bottom: 2px;
   margin-left: 0.5rem;
-  ;
 }
 
 .open_eatery {
@@ -89,7 +99,7 @@ body.fade-out {
 
 .card {
   margin: 0 auto;
-  background: #23272A;
+  background: #23272a;
   width: 20rem;
   padding: 20px;
   margin-bottom: 1rem !important;
@@ -97,7 +107,7 @@ body.fade-out {
 }
 
 .announcement {
-  background: #23272A;
+  background: #23272a;
 }
 
 .border-bottom-custom {
