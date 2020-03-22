@@ -54,7 +54,6 @@ body.fade-out {
 
 .open_eatery {
   background-color: #19b875;
-  animation: blinking 1s linear infinite;
 }
 
 @keyframes blinking {
