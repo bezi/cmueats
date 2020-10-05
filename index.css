@@ -1,13 +1,3 @@
-@import url("https://rsms.me/inter/inter.css");
-body {
-  font-family: "Inter", sans-serif !important;
-}
-@supports (font-variation-settings: normal) {
-  body {
-    font-family: "Inter var", sans-serif !important;
-  }
-}
-
 body {
   padding: 0;
   margin: 0;
@@ -16,9 +6,8 @@ body {
   color: white;
   background: #2c2f33;
   font-size: 14px;
-  line-height: 1.42857143;
+  font-family: Inter, sans-serif;
   box-sizing: border-box;
-  opacity: 1;
   transition: 1s opacity;
 }
 
@@ -28,11 +17,6 @@ body {
 
 h5 {
   font-weight: 600;
-}
-
-body.fade-out {
-  opacity: 0;
-  transition: none;
 }
 
 .font-weight-boldest {
@@ -48,12 +32,28 @@ body.fade-out {
   height: 12px;
   width: 12px;
   margin: 0px;
-  margin-bottom: 2px;
-  margin-left: 0.5rem;
+  margin-bottom: 0px;
+  margin-right: 0.5rem;
 }
 
 .open_eatery {
   background-color: #19b875;
+  animation-name: blinking;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+.closed_eatery {
+  background-color: #dd3c18;
+}
+
+.open {
+  color: #19b875;
+  opacity: 0.9;
+}
+
+.closed {
+  color: #dd3c18;
 }
 
 @keyframes blinking {
@@ -78,10 +78,6 @@ body.fade-out {
   }
 }
 
-.closed_eatery {
-  background-color: #dd3c18;
-}
-
 .content-container {
   padding-top: 10vh;
 }
@@ -94,13 +90,14 @@ body.fade-out {
 .psa h2 {
   font-size: 2.8em;
   font-weight: 800;
+  font-family: Zilla Slab, sans-serif;
 }
 
 .card {
   margin: 0 auto;
   background: #23272a;
-  width: 20rem;
-  padding: 20px;
+  /* width: 20rem; */
+  /* padding: 20px; */
   margin-bottom: 1rem !important;
   border: 2px solid rgba(0, 0, 0, 0.1);
 }
@@ -115,14 +112,23 @@ body.fade-out {
 
 .logo-type {
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 1.8em;
   font-weight: 800;
+  font-family: Zilla Slab;
   color: #dd3c18 !important;
+}
+
+.card-header {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .card-title {
   padding: 0;
   font-weight: 700;
+  font-family: Zilla Slab, sans-serif;
+  text-transform: capitalize;
 }
 
 .card-subtitle,
@@ -137,15 +143,6 @@ body.fade-out {
 @media (max-width: 575.98px) {
   .psa h2 {
     font-size: 2em;
-    line-height: 1.3em;
-  }
-
-  .card-title {
-    padding-left: 0vw;
-  }
-
-  .card {
-    width: 100%;
   }
 }
 
@@ -177,19 +174,11 @@ body.fade-out {
   .card-columns {
     column-count: 4;
   }
-
-  .card {
-    height: 130px;
-  }
 }
 
 @media (min-width: 1600px) {
   .card-columns {
     column-count: 5;
-  }
-
-  .card {
-    height: 130px;
   }
 }
 
