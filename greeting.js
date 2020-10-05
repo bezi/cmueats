@@ -4,11 +4,11 @@ var graveyard = [
   "Staying up all night?",
   "Want a late-night snack?",
   "Don't stay up too late!",
+  "Delivery too expensive?",
 ];
 var morning = [
   "Fancy some breakfast?",
   "Is breakfast really the most important meal of the day?",
-  "UberEats too expensive?",
   "What do you want to eat?",
   "Have a good morning!",
 ];
@@ -22,6 +22,7 @@ var evening = [
   "What do you want for dinner?",
   "What do you want to eat?",
   "Have a good evening!",
+  "Grab a bite to eat!",
 ];
 
 if (hours >= 0 && hours < 6) {

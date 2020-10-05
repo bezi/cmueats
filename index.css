@@ -7,20 +7,10 @@ body {
   background: #2c2f33;
   font-size: 14px;
   font-family: Inter, sans-serif;
-  box-sizing: border-box;
-  transition: 1s opacity;
 }
 
 .bg-dark {
   background: #23272a !important;
-}
-
-h5 {
-  font-weight: 600;
-}
-
-.font-weight-boldest {
-  font-weight: 700;
 }
 
 .open_eatery,
@@ -93,15 +83,6 @@ h5 {
   font-family: Zilla Slab, sans-serif;
 }
 
-.card {
-  margin: 0 auto;
-  background: #23272a;
-  /* width: 20rem; */
-  /* padding: 20px; */
-  margin-bottom: 1rem !important;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-}
-
 .announcement {
   background: #23272a;
 }
@@ -118,6 +99,16 @@ h5 {
   color: #dd3c18 !important;
 }
 
+.card {
+  margin: 0 auto;
+  background: #23272a;
+  /* width: 20rem; */
+  /* padding: 20px; */
+  margin-bottom: 1rem !important;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  min-height: 150px;
+}
+
 .card-header {
   text-transform: uppercase;
   font-weight: 700;
@@ -126,14 +117,8 @@ h5 {
 
 .card-title {
   padding: 0;
-  font-weight: 700;
   font-family: Zilla Slab, sans-serif;
   text-transform: capitalize;
-}
-
-.card-subtitle,
-.card-text {
-  font-weight: 500;
 }
 
 .tagline {
@@ -164,21 +149,9 @@ h5 {
   }
 }
 
-@media (min-width: 1200px) {
-  .card-columns {
-    column-count: 3;
-  }
-}
-
-@media (min-width: 1350px) {
+@media (min-width: 1300px) {
   .card-columns {
     column-count: 4;
-  }
-}
-
-@media (min-width: 1600px) {
-  .card-columns {
-    column-count: 5;
   }
 }
 
