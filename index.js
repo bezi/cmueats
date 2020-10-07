@@ -17,7 +17,7 @@ var getAPIFmtConversion = function (e) {
       return (
         r.setDate(r.getDate() + n),
         r.setHours(e.hour),
-        r.setMinutes(e.min),
+        r.setMinutes(e.minute),
         r.setSeconds(0),
         t > r && r.setDate(r.getDate() + 7),
         r.toJSON()
@@ -29,11 +29,11 @@ var getAPIFmtConversion = function (e) {
     return {
       day: t.getDay(),
       hour: t.getHours(),
-      min: t.getMinutes(),
+      minute: t.getMinutes(),
     };
   },
   apiFmtToInt = function (e) {
-    return 1e4 * e.day + 100 * e.hour + e.min;
+    return 1e4 * e.day + 100 * e.hour + e.minute;
   },
   genEateryMetadata = function (e, t) {
     var r = e.times,
