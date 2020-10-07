@@ -88,7 +88,7 @@ var getAPIFmtConversion = function (e) {
               {
                 className: f,
               },
-              f
+              t
             )
           ),
           React.createElement(
@@ -110,12 +110,19 @@ var getAPIFmtConversion = function (e) {
               },
               this.props.eatery.location
             ),
+            // React.createElement(
+            //   "p",
+            //   {
+            //     className: "card-text",
+            //   },
+            //   t
+            // ),
             React.createElement(
               "p",
               {
                 className: "card-text",
               },
-              t
+              this.props.eatery.short_description
             )
           )
         )
