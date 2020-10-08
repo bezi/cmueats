@@ -110,13 +110,6 @@ var getAPIFmtConversion = function (e) {
               },
               this.props.eatery.location
             ),
-            // React.createElement(
-            //   "p",
-            //   {
-            //     className: "card-text",
-            //   },
-            //   t
-            // ),
             React.createElement(
               "p",
               {
@@ -144,7 +137,7 @@ var getAPIFmtConversion = function (e) {
       return React.createElement(
         "div",
         {
-          className: "eateryList",
+          className: "eateryList card-columns",
         },
         t
       );
@@ -202,11 +195,12 @@ var getAPIFmtConversion = function (e) {
       return React.createElement(
         "div",
         {
-          className: "eateryContainer card-columns",
+          className: "eateryContainer",
         },
         React.createElement(EateryList, {
           eateryList: r,
           time: this.state.currentTime,
+          className: "pt-5",
         }),
         React.createElement(EateryList, {
           eateryList: n,

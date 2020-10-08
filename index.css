@@ -150,12 +150,6 @@ body {
   }
 }
 
-@media (min-width: 2000px) {
-  .card-columns {
-    column-count: 5;
-  }
-}
-
 @media (max-width: 767px) {
   .desktop-only {
     display: none;
