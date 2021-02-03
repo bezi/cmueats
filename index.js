@@ -212,7 +212,7 @@ var getAPIFmtConversion = function (e) {
 
 ReactDOM.render(
   React.createElement(EateryContainer, {
-    url: "https://apis.scottylabs.org/dining/locations",
+    url: "https://dining.apis.scottylabs.org/locations",
   }),
   document.getElementById("content")
 );
