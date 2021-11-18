@@ -9,6 +9,12 @@ body {
   font-family: Inter, sans-serif;
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .bg-dark {
   background: #23272a !important;
 }
@@ -76,6 +82,10 @@ body {
   font-family: Zilla Slab, sans-serif;
 }
 
+.font-serif {
+  font-family: Zilla Slab, sans-serif;
+}
+
 .announcement {
   background: #23272a;
 }
@@ -126,11 +136,11 @@ body {
   }
 
   .card-header {
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
   }
 
   .card-body {
-    padding: .75rem 1rem;
+    padding: 0.75rem 1rem;
   }
 }
 
