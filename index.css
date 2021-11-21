@@ -19,8 +19,8 @@ body {
   background: #23272a !important;
 }
 
-.open_eatery,
-.closed_eatery {
+.open-eatery,
+.closed-eatery {
   display: inline-block;
   border-radius: 50%;
   width: 50%;
@@ -30,14 +30,19 @@ body {
   margin-right: 0.5rem;
 }
 
-.open_eatery {
+.open-eatery {
   background-color: #19b875;
   animation-name: blinking;
   animation-duration: 1s;
   animation-iteration-count: infinite;
 }
 
-.closed_eatery {
+.badge-accent {
+  color: #105c03;
+  background: #19b875;
+}
+
+.closed-eatery {
   background-color: #dd3c18;
 }
 
@@ -91,7 +96,7 @@ body {
 }
 
 .border-bottom-custom {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .logo-type {
@@ -106,19 +111,35 @@ body {
   margin: 0 auto;
   background: #23272a;
   margin-bottom: 1rem !important;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.2);
   min-height: 200px;
   padding: 0;
 }
 
 .card-header {
-  font-weight: 700;
+  font-weight: 500;
+  background-color: #1C1F21;
 }
 
 .card-title {
   padding: 0;
   font-family: Zilla Slab, sans-serif;
   text-transform: capitalize;
+}
+
+.card-card, .menu-text{
+  display: inline;
+}
+
+.menu-text {
+  text-decoration: underline;
+  color: white;
+  transition: 0.1s;
+}
+
+.menu-text:hover, .menu-text:active {
+  color: gray;
+  text-decoration: none;
 }
 
 .tagline {
