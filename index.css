@@ -146,6 +146,10 @@ body {
   font-size: 1em;
 }
 
+.card-columns {
+  column-gap: 1em;
+}
+
 @media (max-width: 575.98px) {
   .psa h1 {
     font-size: 0.8em;
