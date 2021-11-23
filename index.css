@@ -30,6 +30,10 @@ body {
   margin-right: 0.5rem;
 }
 
+.eateryList {
+  display: inline-block;
+}
+
 .open-eatery {
   background-color: #19b875;
   animation-name: blinking;
@@ -58,10 +62,6 @@ body {
 @keyframes blinking {
   0% {
     opacity: 0;
-  }
-
-  49% {
-    opacity: 1;
   }
 
   50% {
@@ -112,7 +112,7 @@ body {
   background: #23272a;
   margin-bottom: 1rem !important;
   border: 2px solid rgba(0, 0, 0, 0.2);
-  min-height: 200px;
+  min-height:215px;
   padding: 0;
 }
 
