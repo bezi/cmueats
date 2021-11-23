@@ -6,7 +6,7 @@ body {
   color: white;
   background: #2c2f33;
   font-size: 14px;
-  font-family: Inter, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 .footer {
@@ -84,11 +84,11 @@ body {
 .psa {
   font-size: 2.8em;
   font-weight: 800;
-  font-family: Zilla Slab, sans-serif;
+  font-family: "Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 .font-serif {
-  font-family: Zilla Slab, sans-serif;
+  font-family: "Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 .announcement {
@@ -103,7 +103,7 @@ body {
   font-weight: bold;
   font-size: 1.8em;
   font-weight: 800;
-  font-family: Zilla Slab;
+  font-family: "Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   color: #dd3c18 !important;
 }
 
@@ -112,22 +112,23 @@ body {
   background: #23272a;
   margin-bottom: 1rem !important;
   border: 2px solid rgba(0, 0, 0, 0.2);
-  min-height:215px;
+  min-height: 215px;
   padding: 0;
 }
 
 .card-header {
   font-weight: 500;
-  background-color: #1C1F21;
+  background-color: #1c1f21;
 }
 
 .card-title {
   padding: 0;
-  font-family: Zilla Slab, sans-serif;
+  font-family: "Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   text-transform: capitalize;
 }
 
-.card-card, .menu-text{
+.card-card,
+.menu-text {
   display: inline;
 }
 
@@ -137,7 +138,8 @@ body {
   transition: 0.1s;
 }
 
-.menu-text:hover, .menu-text:active {
+.menu-text:hover,
+.menu-text:active {
   color: gray;
   text-decoration: none;
 }
@@ -187,7 +189,7 @@ body {
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1700px) {
   .card-columns {
     column-count: 4;
   }
