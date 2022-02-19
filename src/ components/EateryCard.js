@@ -5,7 +5,6 @@ import {
   Typography,
   styled,
   Grid,
-  Modal,
   Button,
   Accordion,
   AccordionSummary,
@@ -13,6 +12,8 @@ import {
   CardContent,
   CardActions,
   Avatar,
+  Dialog,
+  DialogContent,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -80,6 +81,11 @@ const OpenAvatar = styled(Avatar)({
     animationIterationCount: "infinite",
   },
 });
+
+const SpecialsContent = styled(Accordion)({
+  backgroundColor: "#23272A",
+});
+
 export default function EateryCard({
   name,
   location,
@@ -128,32 +134,43 @@ export default function EateryCard({
         </StyledCard>
       </Grid>
 
-      {/* <Modal
+      <Dialog
         open={modalOpen}
         onClose={(e) => {
           setModalOpen(false);
         }}
+        PaperProps={{
+          style: {
+            backgroundColor: "#23272A",
+          },
+        }}
       >
-        <Typography>{statusMsg}</Typography>
-        <Typography>{name}</Typography>
-        <Typography>{location}</Typography>
-        {todaysSpecials.map((special) => {
-          return (
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>{special.title}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>{special.description}</Typography>
-              </AccordionDetails>
-            </Accordion>
-          );
-        })}
-      </Modal> */}
+        <StyledCard>
+          <StyledCardHeader
+            title={<OpenText variant="subtitle1">{statusMsg}</OpenText>}
+          ></StyledCardHeader>
+          <CardContent>
+            <NameText variant="h5">{name}</NameText>
+            <LocationText variant="subtitle2">{location}</LocationText>
+          </CardContent>
+          {todaysSpecials.concat(todaysSoups).map((special) => {
+            return (
+              <SpecialsContent style={{}}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <DescriptionText>{special.title}</DescriptionText>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <LocationText>{special.description}</LocationText>
+                </AccordionDetails>
+              </SpecialsContent>
+            );
+          })}
+        </StyledCard>
+      </Dialog>
     </>
   );
 }
