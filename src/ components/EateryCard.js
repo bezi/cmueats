@@ -21,6 +21,7 @@ const StyledCard = styled(Card)({
   backgroundColor: "#23272A",
   border: "2px solid rgba(0, 0, 0, 0.2)",
   textAlign: "left",
+  borderRadius: 7,
 });
 
 const StyledCardHeader = styled(CardHeader)({
@@ -57,7 +58,7 @@ const ActionButton = styled(Button)({
   elevation: 30,
 });
 
-const OpenAvatar = styled(Avatar)({
+const GreenDot = styled(Card)({
   "@keyframes blinking": {
     "0%": {
       opacity: 0,
@@ -74,12 +75,14 @@ const OpenAvatar = styled(Avatar)({
     "100%": {
       opacity: 0,
     },
-
-    backgroundColor: "#19b875",
-    animationName: "blinking",
-    animationDuration: "1s",
-    animationIterationCount: "infinite",
   },
+  background: "#19b875",
+  width: "100%",
+  height: "100%",
+  foregroundColor: "#19b875",
+  animationName: "blinking",
+  animationDuration: "1s",
+  animationIterationCount: "infinite",
 });
 
 const SpecialsContent = styled(Accordion)({
@@ -105,6 +108,13 @@ export default function EateryCard({
         <StyledCard>
           <StyledCardHeader
             title={<OpenText variant="subtitle1">{statusMsg}</OpenText>}
+            avatar={
+              <Avatar
+                sx={{ width: 12, height: 12, backgroundColor: "#1D1F21" }}
+              >
+                <GreenDot />
+              </Avatar>
+            }
           ></StyledCardHeader>
           <CardContent>
             <NameText variant="h5">{name}</NameText>
@@ -127,7 +137,7 @@ export default function EateryCard({
                   setModalOpen(true);
                 }}
               >
-                Specials and More
+                Specials, Soups & More
               </ActionButton>
             )}
           </CardActions>
@@ -148,6 +158,13 @@ export default function EateryCard({
         <StyledCard>
           <StyledCardHeader
             title={<OpenText variant="subtitle1">{statusMsg}</OpenText>}
+            avatar={
+              <Avatar
+                sx={{ width: 12, height: 12, backgroundColor: "#1D1F21" }}
+              >
+                <GreenDot />
+              </Avatar>
+            }
           ></StyledCardHeader>
           <CardContent>
             <NameText variant="h5">{name}</NameText>
