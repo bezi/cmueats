@@ -13,10 +13,14 @@ export default function EateryCard({
   menuURL,
   todaysSpecials,
   acceptsOnlineOrders,
+  isOpen,
+  closeMsg,
 }) {
   return (
     <Grid item xs={12} md={6} lg={4} xl={4}>
-      <StyledCard></StyledCard>
+      <StyledCard>
+        <Typography></Typography>
+      </StyledCard>
     </Grid>
   );
 }
