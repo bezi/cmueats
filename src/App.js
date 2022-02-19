@@ -35,7 +35,7 @@ function App() {
         name="Back Bar Grill"
         location="Cohon Center, Second Floor"
         isOpen={true}
-        description="a mere 100 miles east of campus! Pair your favorite selections – including Chicken Tenders or the hefty Back Bar Burger - with fresh-fried fries for a taste experience unlike any other. And for a limited time, drop by for the soon-to-be-famous Pittsburgh Fried Chicken Sandwich with fries, coleslaw and a zesty chipotle mayo RIGHT ON a brioche bun! This location is Grubhub only on Saturdays and Sundays! 4:30--8:30pm"
+        description="Unique, hand-crafted signature sandwiches and burgers"
         menuURL="https://apps.studentaffairs.cmu.edu/dining/conceptinfo/conceptAssets/menus/F21WebsiteMenu_BackBarGrill-v2.pdf"
         acceptsOnlineOrders={true}
         statusMsg="Closes in 4 hours (today at 8:00 pm)"

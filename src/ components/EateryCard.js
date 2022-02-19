@@ -11,6 +11,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   CardContent,
+  CardActions,
+  Avatar,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -25,6 +27,51 @@ const StyledCardHeader = styled(CardHeader)({
   backgroundColor: "#1D1F21",
 });
 
+const NameText = styled(Typography)({
+  color: "white",
+  padding: 0,
+  fontFamily:
+    '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+  textTransform: "capitalize",
+});
+
+const LocationText = styled(Typography)({
+  color: "#6C757D",
+  marginBottom: "10px",
+});
+
+const DescriptionText = styled(Typography)({
+  color: "white",
+});
+
+const OpenText = styled(Typography)({
+  color: "#19b875",
+});
+
+const OpenAvatar = styled(Avatar)({
+  "@keyframes blinking": {
+    "0%": {
+      opacity: 0,
+    },
+
+    "50%": {
+      opacity: 1,
+    },
+
+    "75%": {
+      opacity: 1,
+    },
+
+    "100%": {
+      opacity: 0,
+    },
+
+    backgroundColor: "#19b875",
+    animationName: "blinking",
+    animationDuration: "1s",
+    animationIterationCount: "infinite",
+  },
+});
 export default function EateryCard({
   name,
   location,
@@ -42,36 +89,34 @@ export default function EateryCard({
     <>
       <Grid item xs={12} md={6} lg={4} xl={4}>
         <StyledCard>
-          <StyledCardHeader title={statusMsg}></StyledCardHeader>
+          <StyledCardHeader
+            title={<OpenText variant="subtitle1">{statusMsg}</OpenText>}
+          ></StyledCardHeader>
           <CardContent>
-            <Typography>{name}</Typography>
-            <Typography>{location}</Typography>
-            <Typography>{description}</Typography>
-            <Grid container alignItems="center" justify="center">
-              {menuURL && (
-                <Grid item>
-                  <Button
-                    onClick={(e) => {
-                      window.open(menuURL, "_blank");
-                    }}
-                  >
-                    Menu
-                  </Button>
-                </Grid>
-              )}
-              {todaysSpecials && (
-                <Grid item>
-                  <Button
-                    onClick={(e) => {
-                      setModalOpen(true);
-                    }}
-                  >
-                    View Specials and More
-                  </Button>
-                </Grid>
-              )}
-            </Grid>
+            <NameText variant="h5">{name}</NameText>
+            <LocationText variant="subtitle2">{location}</LocationText>
+            <DescriptionText>{description}</DescriptionText>
           </CardContent>
+          <CardActions>
+            {menuURL && (
+              <Button
+                onClick={(e) => {
+                  window.open(menuURL, "_blank");
+                }}
+              >
+                Menu
+              </Button>
+            )}
+            {todaysSpecials && (
+              <Button
+                onClick={(e) => {
+                  setModalOpen(true);
+                }}
+              >
+                Specials and More
+              </Button>
+            )}
+          </CardActions>
         </StyledCard>
       </Grid>
 
