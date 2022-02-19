@@ -48,6 +48,14 @@ const OpenText = styled(Typography)({
   color: "#19b875",
 });
 
+const ActionButton = styled(Button)({
+  fontFamily:
+    '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+  color: "white",
+  backgroundColor: "#1D1F21",
+  elevation: 30,
+});
+
 const OpenAvatar = styled(Avatar)({
   "@keyframes blinking": {
     "0%": {
@@ -99,22 +107,22 @@ export default function EateryCard({
           </CardContent>
           <CardActions>
             {menuURL && (
-              <Button
+              <ActionButton
                 onClick={(e) => {
                   window.open(menuURL, "_blank");
                 }}
               >
                 Menu
-              </Button>
+              </ActionButton>
             )}
             {todaysSpecials && (
-              <Button
+              <ActionButton
                 onClick={(e) => {
                   setModalOpen(true);
                 }}
               >
                 Specials and More
-              </Button>
+              </ActionButton>
             )}
           </CardActions>
         </StyledCard>
