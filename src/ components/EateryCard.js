@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Card,
+  CardHeader,
   Typography,
   styled,
   Grid,
@@ -9,11 +10,19 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  CardContent,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const StyledCard = styled(Card)({
-  backgroundColor: "#eee",
+  backgroundColor: "#23272A",
+  border: "2px solid rgba(0, 0, 0, 0.2)",
+  textAlign: "left",
+});
+
+const StyledCardHeader = styled(CardHeader)({
+  fontWeight: 500,
+  backgroundColor: "#1D1F21",
 });
 
 export default function EateryCard({
@@ -33,34 +42,36 @@ export default function EateryCard({
     <>
       <Grid item xs={12} md={6} lg={4} xl={4}>
         <StyledCard>
-          <Typography>{statusMsg}</Typography>
-          <Typography>{name}</Typography>
-          <Typography>{location}</Typography>
-          <Typography>{description}</Typography>
-          <Grid container alignItems="center" justify="center">
-            {menuURL && (
-              <Grid item>
-                <Button
-                  onClick={(e) => {
-                    window.open(menuURL, "_blank");
-                  }}
-                >
-                  Menu
-                </Button>
-              </Grid>
-            )}
-            {todaysSpecials && (
-              <Grid item>
-                <Button
-                  onClick={(e) => {
-                    setModalOpen(true);
-                  }}
-                >
-                  View Specials and More
-                </Button>
-              </Grid>
-            )}
-          </Grid>
+          <StyledCardHeader title={statusMsg}></StyledCardHeader>
+          <CardContent>
+            <Typography>{name}</Typography>
+            <Typography>{location}</Typography>
+            <Typography>{description}</Typography>
+            <Grid container alignItems="center" justify="center">
+              {menuURL && (
+                <Grid item>
+                  <Button
+                    onClick={(e) => {
+                      window.open(menuURL, "_blank");
+                    }}
+                  >
+                    Menu
+                  </Button>
+                </Grid>
+              )}
+              {todaysSpecials && (
+                <Grid item>
+                  <Button
+                    onClick={(e) => {
+                      setModalOpen(true);
+                    }}
+                  >
+                    View Specials and More
+                  </Button>
+                </Grid>
+              )}
+            </Grid>
+          </CardContent>
         </StyledCard>
       </Grid>
 

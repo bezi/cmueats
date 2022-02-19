@@ -29,9 +29,7 @@ function App() {
   ];
   return (
     <div className="App">
-      <header className="App-header">
-        <Typography variant="h2">{getGreeting()}</Typography>
-      </header>
+      <Typography variant="h2">{getGreeting()}</Typography>
       <EateryCard
         todaysSpecials={specials}
         name="Back Bar Grill"
