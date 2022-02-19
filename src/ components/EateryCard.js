@@ -1,20 +1,89 @@
 import React, { useState } from "react";
 import {
   Card,
+  CardHeader,
   Typography,
   styled,
   Grid,
-  Modal,
   Button,
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  CardContent,
+  CardActions,
+  Avatar,
+  Dialog,
+  DialogContent,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const StyledCard = styled(Card)({
-  borderRadius: "50%",
-  backgroundColor: "#eee",
+  backgroundColor: "#23272A",
+  border: "2px solid rgba(0, 0, 0, 0.2)",
+  textAlign: "left",
+});
+
+const StyledCardHeader = styled(CardHeader)({
+  fontWeight: 500,
+  backgroundColor: "#1D1F21",
+});
+
+const NameText = styled(Typography)({
+  color: "white",
+  padding: 0,
+  fontFamily:
+    '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+  textTransform: "capitalize",
+});
+
+const LocationText = styled(Typography)({
+  color: "#6C757D",
+  marginBottom: "10px",
+});
+
+const DescriptionText = styled(Typography)({
+  color: "white",
+});
+
+const OpenText = styled(Typography)({
+  color: "#19b875",
+});
+
+const ActionButton = styled(Button)({
+  fontFamily:
+    '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+  color: "white",
+  backgroundColor: "#1D1F21",
+  elevation: 30,
+});
+
+const OpenAvatar = styled(Avatar)({
+  "@keyframes blinking": {
+    "0%": {
+      opacity: 0,
+    },
+
+    "50%": {
+      opacity: 1,
+    },
+
+    "75%": {
+      opacity: 1,
+    },
+
+    "100%": {
+      opacity: 0,
+    },
+
+    backgroundColor: "#19b875",
+    animationName: "blinking",
+    animationDuration: "1s",
+    animationIterationCount: "infinite",
+  },
+});
+
+const SpecialsContent = styled(Accordion)({
+  backgroundColor: "#23272A",
 });
 
 export default function EateryCard({
@@ -34,62 +103,74 @@ export default function EateryCard({
     <>
       <Grid item xs={12} md={6} lg={4} xl={4}>
         <StyledCard>
-          <Typography>{{ statusMsg }}</Typography>
-          <Typography>{{ name }}</Typography>
-          <Typography>{{ location }}</Typography>
-          <Typography>{{ description }}</Typography>
-          <Grid container alignItems="center" justify="center">
+          <StyledCardHeader
+            title={<OpenText variant="subtitle1">{statusMsg}</OpenText>}
+          ></StyledCardHeader>
+          <CardContent>
+            <NameText variant="h5">{name}</NameText>
+            <LocationText variant="subtitle2">{location}</LocationText>
+            <DescriptionText>{description}</DescriptionText>
+          </CardContent>
+          <CardActions>
             {menuURL && (
-              <Grid item>
-                <Button
-                  onClick={(e) => {
-                    window.open(menuURL, "_blank");
-                  }}
-                >
-                  Menu
-                </Button>
-              </Grid>
+              <ActionButton
+                onClick={(e) => {
+                  window.open(menuURL, "_blank");
+                }}
+              >
+                Menu
+              </ActionButton>
             )}
             {todaysSpecials && (
-              <Grid item>
-                <Button
-                  onClick={(e) => {
-                    setModalOpen(true);
-                  }}
-                >
-                  View Specials and More
-                </Button>
-              </Grid>
+              <ActionButton
+                onClick={(e) => {
+                  setModalOpen(true);
+                }}
+              >
+                Specials and More
+              </ActionButton>
             )}
-          </Grid>
+          </CardActions>
         </StyledCard>
       </Grid>
 
-      <Modal
+      <Dialog
         open={modalOpen}
-        onClose={() => {
+        onClose={(e) => {
           setModalOpen(false);
         }}
+        PaperProps={{
+          style: {
+            backgroundColor: "#23272A",
+          },
+        }}
       >
-        <Typography>{{ statusMsg }}</Typography>
-        <Typography>{{ name }}</Typography>
-        <Typography>{{ location }}</Typography>
-
-        {todaysSpecials.map((special) => {
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>{special.title}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{special.description}</Typography>
-            </AccordionDetails>
-          </Accordion>;
-        })}
-      </Modal>
+        <StyledCard>
+          <StyledCardHeader
+            title={<OpenText variant="subtitle1">{statusMsg}</OpenText>}
+          ></StyledCardHeader>
+          <CardContent>
+            <NameText variant="h5">{name}</NameText>
+            <LocationText variant="subtitle2">{location}</LocationText>
+          </CardContent>
+          {todaysSpecials.concat(todaysSoups).map((special) => {
+            return (
+              <SpecialsContent style={{}}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <DescriptionText>{special.title}</DescriptionText>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <LocationText>{special.description}</LocationText>
+                </AccordionDetails>
+              </SpecialsContent>
+            );
+          })}
+        </StyledCard>
+      </Dialog>
     </>
   );
 }
