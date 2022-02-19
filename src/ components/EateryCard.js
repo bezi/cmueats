@@ -1,4 +1,10 @@
 import React from "react";
+import { Card, Typography, styled, Grid } from "@mui/material";
+
+const StyledCard = styled(Card)({
+  borderRadius: "50%",
+  backgroundColor: "#eee",
+});
 
 export default function EateryCard({
   name,
@@ -8,5 +14,9 @@ export default function EateryCard({
   todaysSpecials,
   acceptsOnlineOrders,
 }) {
-  return <></>;
+  return (
+    <Grid item xs={12} md={6} lg={4} xl={4}>
+      <StyledCard></StyledCard>
+    </Grid>
+  );
 }
