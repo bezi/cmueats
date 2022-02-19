@@ -1,9 +1,10 @@
-import logo from "./logo.svg";
-import "./App.css";
-import React from "react";
 import { Typography } from "@mui/material";
-import getGreeting from "./util/greeting";
+import React, { useEffect, useState } from "react";
 import EateryCard from "./ components/EateryCard";
+import "./App.css";
+import getGreeting from "./util/greeting";
+import queryLocations from "./util/queryLocations";
+
 function App() {
   const specials = [
     {
@@ -27,6 +28,15 @@ function App() {
       title: "Chicken Noodle Soup",
     },
   ];
+
+  const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    queryLocations().then((parsedLocations) => {
+      setLocations(parsedLocations);
+    })
+  }, []);
+
   return (
     <div className="App">
       <Typography variant="h2">{getGreeting()}</Typography>
