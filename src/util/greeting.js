@@ -38,3 +38,5 @@ const getGreeting = () => {
 
   return message;
 };
+
+export default getGreeting;

@@ -13,7 +13,6 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const StyledCard = styled(Card)({
-  borderRadius: "50%",
   backgroundColor: "#eee",
 });
 
@@ -34,10 +33,10 @@ export default function EateryCard({
     <>
       <Grid item xs={12} md={6} lg={4} xl={4}>
         <StyledCard>
-          <Typography>{{ statusMsg }}</Typography>
-          <Typography>{{ name }}</Typography>
-          <Typography>{{ location }}</Typography>
-          <Typography>{{ description }}</Typography>
+          <Typography>{statusMsg}</Typography>
+          <Typography>{name}</Typography>
+          <Typography>{location}</Typography>
+          <Typography>{description}</Typography>
           <Grid container alignItems="center" justify="center">
             {menuURL && (
               <Grid item>
@@ -65,31 +64,32 @@ export default function EateryCard({
         </StyledCard>
       </Grid>
 
-      <Modal
+      {/* <Modal
         open={modalOpen}
-        onClose={() => {
+        onClose={(e) => {
           setModalOpen(false);
         }}
       >
-        <Typography>{{ statusMsg }}</Typography>
-        <Typography>{{ name }}</Typography>
-        <Typography>{{ location }}</Typography>
-
+        <Typography>{statusMsg}</Typography>
+        <Typography>{name}</Typography>
+        <Typography>{location}</Typography>
         {todaysSpecials.map((special) => {
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>{special.title}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{special.description}</Typography>
-            </AccordionDetails>
-          </Accordion>;
+          return (
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>{special.title}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>{special.description}</Typography>
+              </AccordionDetails>
+            </Accordion>
+          );
         })}
-      </Modal>
+      </Modal> */}
     </>
   );
 }
