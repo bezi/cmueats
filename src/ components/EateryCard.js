@@ -85,6 +85,33 @@ const GreenDot = styled(Card)({
   animationIterationCount: "infinite",
 });
 
+const RedDot = styled(Card)({
+  "@keyframes blinking": {
+    "0%": {
+      opacity: 0,
+    },
+
+    "50%": {
+      opacity: 1,
+    },
+
+    "75%": {
+      opacity: 1,
+    },
+
+    "100%": {
+      opacity: 0,
+    },
+  },
+  background: "#dd3c18",
+  width: "100%",
+  height: "100%",
+  foregroundColor: "#19b875",
+  animationName: "blinking",
+  animationDuration: "1s",
+  animationIterationCount: "infinite",
+});
+
 const SpecialsContent = styled(Accordion)({
   backgroundColor: "#23272A",
 });
@@ -112,7 +139,8 @@ export default function EateryCard({
               <Avatar
                 sx={{ width: 12, height: 12, backgroundColor: "#1D1F21" }}
               >
-                <GreenDot />
+                { isOpen ? <GreenDot /> : <RedDot /> }
+                { statusMsg }
               </Avatar>
             }
           ></StyledCardHeader>

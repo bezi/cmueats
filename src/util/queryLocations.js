@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Duration } from "luxon";
 import { DateTime } from "luxon";
 
 const BASE_URL = "https://dining.apis.scottylabs.org/locations";
@@ -171,6 +170,7 @@ async function queryLocations() {
     }
 
     // console.log(locations);
+    return locations;
   } catch (err) {
     console.error(err);
     return [];
