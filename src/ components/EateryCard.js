@@ -22,6 +22,7 @@ const StyledCard = styled(Card)({
   border: "2px solid rgba(0, 0, 0, 0.2)",
   textAlign: "left",
   borderRadius: 7,
+  height: "100%",
 });
 
 const StyledCardHeader = styled(CardHeader)({
@@ -131,7 +132,7 @@ export default function EateryCard({
 
   return (
     <>
-      <Grid item xs={12} md={6} lg={4} xl={4}>
+      <Grid item xs={12} md={6} lg={3} xl={3}>
         <StyledCard>
           <StyledCardHeader
             title={<OpenText variant="subtitle1">{statusMsg}</OpenText>}
@@ -139,8 +140,8 @@ export default function EateryCard({
               <Avatar
                 sx={{ width: 12, height: 12, backgroundColor: "#1D1F21" }}
               >
-                { isOpen ? <GreenDot /> : <RedDot /> }
-                { statusMsg }
+                {isOpen ? <GreenDot /> : <RedDot />}
+                {statusMsg}
               </Avatar>
             }
           ></StyledCardHeader>

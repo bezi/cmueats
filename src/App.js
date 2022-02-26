@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import EateryCard from "./ components/EateryCard";
 import "./App.css";
@@ -23,64 +23,69 @@ function App() {
   return (
     <div className="App">
       <Typography variant="h2">{getGreeting()}</Typography>
-      {openLocations.map(
-        (
-          {
-            name,
-            location,
-            isOpen,
-            short_description,
-            todaysSpecials,
-            menu,
-            acceptsOnlineOrders,
-            statusMsg,
-            todaysSoups,
-          },
-          index
-        ) => (
-          <EateryCard
-            name={name}
-            location={location}
-            isOpen={isOpen}
-            description={short_description}
-            menuURL={menu}
-            acceptsOnlineOrders={acceptsOnlineOrders}
-            statusMsg={statusMsg}
-            todaysSpecials={todaysSpecials || []}
-            todaysSoups={todaysSoups || []}
-            key={index}
-          />
-        )
-      )}
-      {closedLocations.map(
-        (
-          {
-            name,
-            location,
-            isOpen,
-            short_description,
-            todaysSpecials,
-            menu,
-            acceptsOnlineOrders,
-            statusMsg,
-            todaysSoups,
-          },
-          index
-        ) => (
-          <EateryCard
-            name={name}
-            location={location}
-            isOpen={isOpen}
-            description={short_description}
-            menuURL={menu}
-            acceptsOnlineOrders={acceptsOnlineOrders}
-            statusMsg={statusMsg}
-            todaysSpecials={todaysSpecials || []}
-            todaysSoups={todaysSoups || []}
-            key={index}
-          />
-        )
-      )}
+      <Grid container spacing={1}>
+        {openLocations.map(
+          (
+            {
+              name,
+              location,
+              isOpen,
+              short_description,
+              todaysSpecials,
+              menu,
+              acceptsOnlineOrders,
+              statusMsg,
+              todaysSoups,
+            },
+            index
+          ) => (
+            <EateryCard
+              name={name}
+              location={location}
+              isOpen={isOpen}
+              description={short_description}
+              menuURL={menu}
+              acceptsOnlineOrders={acceptsOnlineOrders}
+              statusMsg={statusMsg}
+              todaysSpecials={todaysSpecials || []}
+              todaysSoups={todaysSoups || []}
+              key={index}
+            />
+          )
+        )}
+      </Grid>
+      <br></br>
+      <Grid container spacing={1}>
+        {closedLocations.map(
+          (
+            {
+              name,
+              location,
+              isOpen,
+              short_description,
+              todaysSpecials,
+              menu,
+              acceptsOnlineOrders,
+              statusMsg,
+              todaysSoups,
+            },
+            index
+          ) => (
+            <EateryCard
+              name={name}
+              location={location}
+              isOpen={isOpen}
+              description={short_description}
+              menuURL={menu}
+              acceptsOnlineOrders={acceptsOnlineOrders}
+              statusMsg={statusMsg}
+              todaysSpecials={todaysSpecials || []}
+              todaysSoups={todaysSoups || []}
+              key={index}
+            />
+          )
+        )}
+      </Grid>
     </div>
   );
 }
