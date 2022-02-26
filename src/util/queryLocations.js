@@ -53,7 +53,7 @@ function apiDateToDateTime(date) {
     weekday: day,
     hour,
     minute,
-  })
+  });
 }
 
 /**
@@ -136,7 +136,6 @@ async function queryLocations() {
 
     // Determine status of locations
     for (const location of locations) {
-      
       const { times } = location;
       const timeSlot = times.find(({ start, end }) => {
         return isOpen(
@@ -157,13 +156,13 @@ async function queryLocations() {
         // Location is open
         location.isOpen = true;
         const endTime = apiDateToDateTime(timeSlot.end);
-        location.statusMessage = getStatusMessage(endTime, true);
+        location.statusMsg = getStatusMessage(endTime, true);
       } else {
         // Location is closed
         location.isOpen = false;
         const nextTimeSlot = getNextTimeSlot(times);
         const { startTime } = nextTimeSlot;
-        location.statusMessage = getStatusMessage(startTime, false);
+        location.statusMsg = getStatusMessage(startTime, false);
         // console.log(location.name);
         // console.log(location.statusMessage);
       }

@@ -51,6 +51,10 @@ const OpenText = styled(Typography)({
   color: "#19b875",
 });
 
+const ClosedText = styled(Typography)({
+  color: "#dd3c18",
+});
+
 const ActionButton = styled(Button)({
   fontFamily:
     '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
@@ -107,7 +111,7 @@ const RedDot = styled(Card)({
   background: "#dd3c18",
   width: "100%",
   height: "100%",
-  foregroundColor: "#19b875",
+  foregroundColor: "#dd3c18",
   animationName: "blinking",
   animationDuration: "1s",
   animationIterationCount: "infinite",
@@ -129,24 +133,28 @@ export default function EateryCard({
   todaysSoups,
 }) {
   const [modalOpen, setModalOpen] = useState(false);
-
   return (
     <>
       <Grid item xs={12} md={6} lg={3} xl={3}>
         <StyledCard>
           <StyledCardHeader
-            title={<OpenText variant="subtitle1">{statusMsg}</OpenText>}
+            title={
+              isOpen ? (
+                <OpenText variant="subtitle1">{statusMsg}</OpenText>
+              ) : (
+                <ClosedText variant="subtitle1">{statusMsg}</ClosedText>
+              )
+            }
             avatar={
               <Avatar
                 sx={{ width: 12, height: 12, backgroundColor: "#1D1F21" }}
               >
                 {isOpen ? <GreenDot /> : <RedDot />}
-                {statusMsg}
               </Avatar>
             }
           ></StyledCardHeader>
           <CardContent>
-            <NameText variant="h5">{name}</NameText>
+            <NameText variant="h6">{name}</NameText>
             <LocationText variant="subtitle2">{location}</LocationText>
             <DescriptionText>{description}</DescriptionText>
           </CardContent>
@@ -186,7 +194,13 @@ export default function EateryCard({
       >
         <StyledCard>
           <StyledCardHeader
-            title={<OpenText variant="subtitle1">{statusMsg}</OpenText>}
+            title={
+              isOpen ? (
+                <OpenText variant="subtitle1">{statusMsg}</OpenText>
+              ) : (
+                <ClosedText variant="subtitle1">{statusMsg}</ClosedText>
+              )
+            }
             avatar={
               <Avatar
                 sx={{ width: 12, height: 12, backgroundColor: "#1D1F21" }}
@@ -196,7 +210,7 @@ export default function EateryCard({
             }
           ></StyledCardHeader>
           <CardContent>
-            <NameText variant="h5">{name}</NameText>
+            <NameText variant="h6">{name}</NameText>
             <LocationText variant="subtitle2">{location}</LocationText>
           </CardContent>
           {todaysSpecials.concat(todaysSoups).map((special) => {
