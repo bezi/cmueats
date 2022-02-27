@@ -13,7 +13,6 @@ import {
   CardActions,
   Avatar,
   Dialog,
-  DialogContent,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
