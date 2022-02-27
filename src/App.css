@@ -30,7 +30,14 @@
 }
 
 .Container {
-  padding: 50px;
+  padding: 40px;
+}
+
+.badge-accent {
+  color: #105c03;
+  background: #19b875;
+  padding: 10px;
+  border-radius: 30;
 }
 
 @keyframes App-logo-spin {

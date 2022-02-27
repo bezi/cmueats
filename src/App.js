@@ -1,4 +1,4 @@
-import { Typography, Grid, Container, styled } from "@mui/material";
+import { Typography, Grid, Badge, styled } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import EateryCard from "./ components/EateryCard";
 import "./App.css";
@@ -26,13 +26,34 @@ function App() {
     fontFamily:
       '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
     textTransform: "capitalize",
-    fontWeight: "bolder",
+    fontWeight: 800,
+  });
+
+  const NewBadge = styled(Badge)({
+    fontFamily:
+      '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+    textTransform: "capitalize",
+    fontWeight: 800,
+    marginLeft: 20,
+    marginRight: 25,
+    marginBottom: 4,
+    color: "#19b875",
   });
 
   return (
     <div className="App">
       <div className="Container">
         <HeaderText variant="h3">{getGreeting()}</HeaderText>
+        <br></br>
+        <HeaderText variant="subtitle1">
+          <NewBadge
+            badgeContent={<HeaderText variant="body2">New</HeaderText>}
+            color="success"
+          ></NewBadge>
+          You can directly browse menus, specials, soups and more at supported
+          locations
+        </HeaderText>
+        <br></br>
         <br></br>
         <Grid container spacing={2}>
           {openLocations.map(
