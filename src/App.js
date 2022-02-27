@@ -25,14 +25,16 @@ function App() {
     padding: 0,
     fontFamily:
       '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-    textTransform: "capitalize",
     fontWeight: 800,
+  });
+
+  const FooterText = styled(Typography)({
+    color: "white",
   });
 
   const NewBadge = styled(Badge)({
     fontFamily:
       '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-    textTransform: "capitalize",
     fontWeight: 800,
     marginLeft: 20,
     marginRight: 25,
@@ -119,6 +121,29 @@ function App() {
           )}
         </Grid>
       </div>
+      <footer>
+        <FooterText>
+          All times displayed in Pittsburgh local time (GMT -4)
+        </FooterText>
+        <FooterText>
+          Contact{" "}
+          <a href="mailto:gramliu@cmu.edu" style={{ color: "white" }}>
+            Gram
+          </a>
+          ,
+          <a href="mailto:anuda@cmu.edu" style={{ color: "white" }}>
+            Anuda
+          </a>
+          , or{" "}
+          <a href="mailto:dsyou@andrew.cmu.edu" style={{ color: "white" }}>
+            David
+          </a>
+          , with any problems
+        </FooterText>
+        <a>
+          cmu<span style={{ color: "#19b87", fontWeight: 900 }}>:eats</span>
+        </a>
+      </footer>
     </div>
   );
 }

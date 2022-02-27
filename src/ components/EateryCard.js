@@ -168,7 +168,7 @@ export default function EateryCard({
                 Menu
               </ActionButton>
             )}
-            {todaysSpecials && (
+            {(todaysSpecials.length !== 0 || todaysSoups.length !== 0) && (
               <ActionButton
                 onClick={(e) => {
                   setModalOpen(true);
