@@ -40,6 +40,13 @@
   border-radius: 30;
 }
 
+.footer {
+  margin-top: 80px;
+  background-color: #23272a;
+  padding: 40px;
+  min-height: 130px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -28,8 +28,18 @@ function App() {
     fontWeight: 800,
   });
 
+  const LogoText = styled(Typography)({
+    color: "#dd3c18",
+    padding: 0,
+    fontFamily:
+      '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+    fontWeight: 800,
+  });
+
   const FooterText = styled(Typography)({
     color: "white",
+    marginBottom: 20,
+    fontSize: 16,
   });
 
   const NewBadge = styled(Badge)({
@@ -121,7 +131,7 @@ function App() {
           )}
         </Grid>
       </div>
-      <footer>
+      <footer className="footer">
         <FooterText>
           All times displayed in Pittsburgh local time (GMT -4)
         </FooterText>
@@ -130,19 +140,19 @@ function App() {
           <a href="mailto:gramliu@cmu.edu" style={{ color: "white" }}>
             Gram
           </a>
-          ,
+          ,{" "}
           <a href="mailto:anuda@cmu.edu" style={{ color: "white" }}>
             Anuda
           </a>
           , or{" "}
           <a href="mailto:dsyou@andrew.cmu.edu" style={{ color: "white" }}>
             David
-          </a>
-          , with any problems
+          </a>{" "}
+          with any problems
         </FooterText>
-        <a>
-          cmu<span style={{ color: "#19b87", fontWeight: 900 }}>:eats</span>
-        </a>
+        <LogoText variant="h4">
+          cmu<span style={{ color: "#19b875" }}>:eats</span>
+        </LogoText>
       </footer>
     </div>
   );
