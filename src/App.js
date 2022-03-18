@@ -49,7 +49,7 @@ function App() {
     marginLeft: 20,
     marginRight: 25,
     marginBottom: 4,
-    color: "#19b875",
+    color: "#19b875"
   });
 
   return (

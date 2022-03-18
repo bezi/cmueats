@@ -116,7 +116,12 @@ function getStatusMessage(timeSlot, isOpen) {
   } else if (diffDays === 1) {
     return `${action} in a day (tomorrow at ${time})`;
   } else if (diffDays === 0) {
-    return `${action} in ${diffHours} hours (today at ${time})`;
+    if (diffHours >= 1) {
+      return `${action} in ${diffHours} hours (today at ${time})`;
+    } else {
+      const diffMinutes = parseInt(Math.floor(Math.abs(diff.as("minutes"))));
+      return `${action} in ${diffMinutes} minutes (today at ${time})`;
+    }
   }
 }
 
