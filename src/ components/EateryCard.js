@@ -22,6 +22,7 @@ const StyledCard = styled(Card)({
   textAlign: "left",
   borderRadius: 7,
   height: "100%",
+  justifyContent: "flex-start"
 });
 
 const StyledCardHeader = styled(CardHeader)({
@@ -157,7 +158,7 @@ export default function EateryCard({
             <LocationText variant="subtitle2">{location}</LocationText>
             <DescriptionText>{description}</DescriptionText>
           </CardContent>
-          <CardActions>
+          <CardActions sx={{ marginTop: "auto" }}>
             {menuURL && (
               <ActionButton
                 onClick={(e) => {
