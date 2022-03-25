@@ -213,9 +213,9 @@ export default function EateryCard({
             <NameText variant="h6">{name}</NameText>
             <LocationText variant="subtitle2">{location}</LocationText>
           </CardContent>
-          {todaysSpecials.concat(todaysSoups).map((special) => {
+          {todaysSpecials.concat(todaysSoups).map((special, idx) => {
             return (
-              <SpecialsContent style={{}}>
+              <SpecialsContent style={{}} key={idx}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
                   aria-controls="panel1a-content"

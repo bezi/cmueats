@@ -2,6 +2,7 @@ import axios from "axios";
 import { DateTime } from "luxon";
 
 const BASE_URL = "https://dining.apis.scottylabs.org/locations";
+const now = DateTime.now();
 
 /**
  * Convert a string to title case
@@ -24,36 +25,27 @@ function toTitleCase(str) {
 }
 
 /**
- * Determine if a given location's time slot covers the current time
- * @param {{ hour: int, minute: int, weekday: int }} start The time slot the location opens
- * @param {{ hour: int, minute: int, weekday: int }} end The time slot the location closes
+ * Convert an API time entry to minutes
+ * @param {int} days The number of days since Sunday (0 if Sunday)
+ * @param {int} hours The number of hours (0-23) since midnight (0 if midnight)
+ * @param {int} minutes The number of minutes since the start of the hour (0-59)
+ * @returns the number of minutes since the start of the week
+ */
+function toMinutes(days, hours, minutes) {
+  return days * 24 * 60 + hours * 60 + minutes;
+}
+
+/**
+ * Determine if a given time slot is open, i.e. encompasses the current time
+ * @param {int} start The time the location opens (in minutes since midnight on Sunday)
+ * @param {int} end The time slot the location closes (in minutes since midnight on Sunday)
  * @returns true if the location is open, false otherwise
  */
 function isOpen(start, end) {
-  const startTime = DateTime.fromObject(start);
-  const endTime = DateTime.fromObject(end);
-  const now = DateTime.now();
-  const nowTime = DateTime.fromObject({
-    hour: now.hour,
-    minute: now.minute,
-    weekday: now.weekday,
-  });
+  const weekday = now.weekday === 7 ? 0 : now.weekday;
+  const nowMinutes = toMinutes(weekday, now.hour, now.minute);
 
-  const diffStart = startTime.diff(nowTime);
-  const diffEnd = endTime.diff(nowTime);
-
-  const open = diffStart.milliseconds < 0 && diffEnd.milliseconds > 0;
-
-  return open;
-}
-
-function apiDateToDateTime(date) {
-  const { day, hour, minute } = date;
-  return DateTime.fromObject({
-    weekday: day,
-    hour,
-    minute,
-  });
+  return start <= nowMinutes && nowMinutes <= end;
 }
 
 /**
@@ -62,52 +54,50 @@ function apiDateToDateTime(date) {
  * @returns The next time slot when the location opens
  */
 function getNextTimeSlot(times) {
-  const now = DateTime.now();
-  const nowTime = DateTime.fromObject({
-    hour: now.hour,
-    minute: now.minute,
-    weekday: now.weekday,
-  });
-
-  // Map times to DateTime objects
-  const timeSlots = times.map(({ start, end }) => {
-    const startTime = apiDateToDateTime(start);
-    const endTime = apiDateToDateTime(end);
-
-    return { startTime, endTime };
-  });
+  const weekday = now.weekday === 7 ? 0 : now.weekday;
+  const nowMinutes = toMinutes(weekday, now.hour, now.minute);
 
   // Find the first time slot that opens after now
-  const nextTimeSlot = timeSlots.find(({ startTime }) => {
-    return startTime.diff(nowTime).milliseconds > 0;
+  const nextTimeSlot = times.find(({ start }) => {
+    return start.rawMinutes >= nowMinutes;
   });
 
   if (nextTimeSlot == null) {
     // End of the week. Return the first time slot instead.
-    const { start, end } = times[0];
-    const startTime = apiDateToDateTime(start);
-    const endTime = apiDateToDateTime(end);
-    return { startTime, endTime };
+    return times[0];
   } else {
     return nextTimeSlot;
   }
 }
 
+/**
+ * Return the status message for a dining location, given the current or next available
+ * time slot, and whether or not the location is currently open
+ * @param {{ start, end }} timeSlot The current or next available time slot
+ * @param {boolean} isOpen whether or not the location is currently open
+ * @returns {str} The status message for the location
+ */
 function getStatusMessage(timeSlot, isOpen) {
-  let diff = timeSlot.diffNow();
-  let diffDaysRaw = diff.as("days");
-  // console.log(diffDaysRaw);
-  if (diffDaysRaw < 0) {
-    diffDaysRaw += 7;
-  }
-  // console.log(diffDaysRaw);
+  const weekday = now.weekday === 7 ? 0 : now.weekday;
+  const nowMinutes = toMinutes(weekday, now.hour, now.minute);
 
-  let diffDays = parseInt(Math.floor(Math.abs(diffDaysRaw)));
-  const diffHours = parseInt(Math.floor(Math.abs(diff.as("hours"))));
+  const { start, end } = timeSlot;
+  // If open, look at when timeSlot closes. If closed, look at when timeSlot opens.
+  const refTime = isOpen ? end : start;
 
-  // console.log(diffDays, diffHours);
+  // Get difference
+  const diff = refTime.rawMinutes - nowMinutes;
+  const diffMinutes = diff % 60;
+  const diffHours = Math.floor((diff / 60) % 24)
+  const diffDays = Math.floor(diff / (60 * 24));
+  
+  // Create time string
+  const { hour, minute } = refTime;
+  const hour12H = hour % 12 === 0 ? 12 : hour % 12;
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const minutePadded = minute < 10 ? `0${minute}` : minute;
+  const time = `${hour12H}:${minutePadded} ${ampm}`;
 
-  const time = timeSlot.toFormat("hh:mm a");
   const action = isOpen ? "Closes" : "Opens";
   const day = timeSlot.weekdayLong;
 
@@ -119,7 +109,6 @@ function getStatusMessage(timeSlot, isOpen) {
     if (diffHours >= 1) {
       return `${action} in ${diffHours} hours (today at ${time})`;
     } else {
-      const diffMinutes = parseInt(Math.floor(Math.abs(diff.as("minutes"))));
       return `${action} in ${diffMinutes} minutes (today at ${time})`;
     }
   }
@@ -133,47 +122,43 @@ async function queryLocations() {
       return [];
     }
 
+    // Convert names to title case and append "raw time" to each time slot
     let { locations } = data;
-    locations.forEach(
-      (location) => (location.name = toTitleCase(location.name))
-    );
+    locations.forEach((location) => {
+      location.name = toTitleCase(location.name);
+      location.times = location.times.map(({ start, end }) => ({
+        // Add minutes since start of the week for isOpen computation
+        start: {
+          ...start,
+          rawMinutes: toMinutes(start.day, start.hour, start.minute),
+        },
+        end: {
+          ...end,
+          rawMinutes: toMinutes(end.day, end.hour, end.minute),
+        },
+      }));
+    });
     // locations = locations.filter((location, idx) => idx === 0);
 
     // Determine status of locations
     for (const location of locations) {
       const { times } = location;
       const timeSlot = times.find(({ start, end }) => {
-        return isOpen(
-          {
-            weekday: start.day,
-            hour: start.hour,
-            minute: start.minute,
-          },
-          {
-            weekday: end.day,
-            hour: end.hour,
-            minute: end.minute,
-          }
-        );
+        return isOpen(start.rawMinutes, end.rawMinutes);
       });
 
       if (timeSlot != null) {
         // Location is open
         location.isOpen = true;
-        const endTime = apiDateToDateTime(timeSlot.end);
-        location.statusMsg = getStatusMessage(endTime, true);
+        location.statusMsg = getStatusMessage(timeSlot, true);
       } else {
         // Location is closed
         location.isOpen = false;
         const nextTimeSlot = getNextTimeSlot(times);
-        const { startTime } = nextTimeSlot;
-        location.statusMsg = getStatusMessage(startTime, false);
-        // console.log(location.name);
-        // console.log(location.statusMessage);
+        location.statusMsg = getStatusMessage(nextTimeSlot, false);
       }
     }
 
-    // console.log(locations);
     return locations;
   } catch (err) {
     console.error(err);

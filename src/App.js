@@ -10,7 +10,6 @@ function App() {
 
   useEffect(() => {
     queryLocations().then((parsedLocations) => {
-      console.log(parsedLocations);
       if (parsedLocations != null) {
         setLocations(parsedLocations);
       }
