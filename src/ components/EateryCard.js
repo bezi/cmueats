@@ -41,6 +41,8 @@ const NameText = styled(Typography)({
 const LocationText = styled(Typography)({
   color: "#6C757D",
   marginBottom: "10px",
+  fontWeight: 500,
+  fontSize:14
 });
 
 const DescriptionText = styled(Typography)({
@@ -49,10 +51,16 @@ const DescriptionText = styled(Typography)({
 
 const OpenText = styled(Typography)({
   color: "#19b875",
+  fontSize: 14,
+  fontWeight:500,
+  fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
 });
 
 const ClosedText = styled(Typography)({
   color: "#dd3c18",
+  fontSize: 14,
+  fontWeight:500,
+  fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
 });
 
 const ActionButton = styled(Button)({
