@@ -88,7 +88,10 @@ function getStatusMessage(timeSlot, isOpen) {
   const refTime = isOpen ? end : start;
 
   // Get difference
-  const diff = (isOpen ? 0 : WEEK_MINUTES) + refTime.rawMinutes - nowMinutes;
+  let diff = isOpen ? refTime.rawMinutes - nowMinutes : refTime.rawMinutes - nowMinutes;
+  if (diff < 0) {
+    diff += WEEK_MINUTES;
+  }
   const diffMinutes = diff % 60;
   const diffHours = Math.floor((diff / 60) % 24);
   const diffDays = Math.floor(diff / (60 * 24));
