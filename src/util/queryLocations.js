@@ -2,6 +2,8 @@ import axios from "axios";
 import { DateTime } from "luxon";
 
 const BASE_URL = "https://dining.apis.scottylabs.org/locations";
+const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const WEEK_MINUTES = 7 * 24 * 60;
 const now = DateTime.now();
 
 /**
@@ -86,11 +88,11 @@ function getStatusMessage(timeSlot, isOpen) {
   const refTime = isOpen ? end : start;
 
   // Get difference
-  const diff = refTime.rawMinutes - nowMinutes;
+  const diff = (isOpen ? 0 : WEEK_MINUTES) + refTime.rawMinutes - nowMinutes;
   const diffMinutes = diff % 60;
-  const diffHours = Math.floor((diff / 60) % 24)
+  const diffHours = Math.floor((diff / 60) % 24);
   const diffDays = Math.floor(diff / (60 * 24));
-  
+
   // Create time string
   const { hour, minute } = refTime;
   const hour12H = hour % 12 === 0 ? 12 : hour % 12;
@@ -99,7 +101,7 @@ function getStatusMessage(timeSlot, isOpen) {
   const time = `${hour12H}:${minutePadded} ${ampm}`;
 
   const action = isOpen ? "Closes" : "Opens";
-  const day = timeSlot.weekdayLong;
+  const day = WEEKDAYS[timeSlot.start.day];
 
   if (diffDays > 1) {
     return `${action} in ${diffDays} days (${day} at ${time})`;
@@ -138,7 +140,9 @@ async function queryLocations() {
         },
       }));
     });
-    // locations = locations.filter((location, idx) => idx === 0);
+
+    // console.log(locations);
+    // locations = locations.filter((location, idx) => idx === 2);
 
     // Determine status of locations
     for (const location of locations) {
