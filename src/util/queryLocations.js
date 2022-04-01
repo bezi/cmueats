@@ -80,6 +80,9 @@ function getNextTimeSlot(times) {
  * @returns {str} The status message for the location
  */
 function getStatusMessage(timeSlot, isOpen) {
+  if (timeSlot == null) {
+    return "Closed until further notice";
+  }
   const weekday = now.weekday === 7 ? 0 : now.weekday;
   const nowMinutes = toMinutes(weekday, now.hour, now.minute);
 
@@ -143,9 +146,6 @@ async function queryLocations() {
         },
       }));
     });
-
-    // console.log(locations);
-    // locations = locations.filter((location, idx) => idx === 2);
 
     // Determine status of locations
     for (const location of locations) {
