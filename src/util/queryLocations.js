@@ -2,7 +2,15 @@ import axios from "axios";
 import { DateTime } from "luxon";
 
 const BASE_URL = "https://dining.apis.scottylabs.org/locations";
-const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const WEEKDAYS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 const WEEK_MINUTES = 7 * 24 * 60;
 const now = DateTime.now();
 
@@ -91,7 +99,9 @@ function getStatusMessage(timeSlot, isOpen) {
   const refTime = isOpen ? end : start;
 
   // Get difference
-  let diff = isOpen ? refTime.rawMinutes - nowMinutes : refTime.rawMinutes - nowMinutes;
+  let diff = isOpen
+    ? refTime.rawMinutes - nowMinutes
+    : refTime.rawMinutes - nowMinutes;
   if (diff < 0) {
     diff += WEEK_MINUTES;
   }
@@ -147,26 +157,33 @@ async function queryLocations() {
       }));
     });
 
+    const processedLocations = [];
+
     // Determine status of locations
     for (const location of locations) {
-      const { times } = location;
-      const timeSlot = times.find(({ start, end }) => {
-        return isOpen(start.rawMinutes, end.rawMinutes);
-      });
+      try {
+        const { times } = location;
+        const timeSlot = times.find(({ start, end }) => {
+          return isOpen(start.rawMinutes, end.rawMinutes);
+        });
 
-      if (timeSlot != null) {
-        // Location is open
-        location.isOpen = true;
-        location.statusMsg = getStatusMessage(timeSlot, true);
-      } else {
-        // Location is closed
-        location.isOpen = false;
-        const nextTimeSlot = getNextTimeSlot(times);
-        location.statusMsg = getStatusMessage(nextTimeSlot, false);
+        if (timeSlot != null) {
+          // Location is open
+          location.isOpen = true;
+          location.statusMsg = getStatusMessage(timeSlot, true);
+        } else {
+          // Location is closed
+          location.isOpen = false;
+          const nextTimeSlot = getNextTimeSlot(times);
+          location.statusMsg = getStatusMessage(nextTimeSlot, false);
+        }
+        processedLocations.push(location);
+      } catch (err) {
+        console.error(err);
       }
     }
 
-    return locations;
+    return processedLocations;
   } catch (err) {
     console.error(err);
     return [];
