@@ -125,7 +125,9 @@ function getStatusMessage(timeSlot, isOpen) {
     return `${action} in a day (tomorrow at ${time})`;
   } else if (diffDays === 0) {
     if (diffHours >= 1) {
-      return `${action} in ${diffHours} hours (today at ${time})`;
+      return `${action} in ${diffHours} hour${
+        diffHours === 1 ? "" : "s"
+      } (today at ${time})`;
     } else {
       return `${action} in ${diffMinutes} minutes (today at ${time})`;
     }
@@ -145,7 +147,7 @@ async function queryLocations() {
     locations.forEach((location) => {
       location.name = toTitleCase(location.name);
       if (location.name === "Ruge Atrium - Rothberg's Roasters Ii") {
-        location.name = "Ruge Atrium - Rothberg's Roasters II"
+        location.name = "Ruge Atrium - Rothberg's Roasters II";
       }
       location.times = location.times.map(({ start, end }) => ({
         // Add minutes since start of the week for isOpen computation
