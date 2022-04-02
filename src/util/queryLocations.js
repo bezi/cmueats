@@ -144,6 +144,9 @@ async function queryLocations() {
     let { locations } = data;
     locations.forEach((location) => {
       location.name = toTitleCase(location.name);
+      if (location.name == "Ruge Atrium - Rothberg's Roasters Ii") {
+        location.name = "Ruge Atrium - Rothberg's Roasters II"
+      }
       location.times = location.times.map(({ start, end }) => ({
         // Add minutes since start of the week for isOpen computation
         start: {
