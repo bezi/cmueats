@@ -97,6 +97,7 @@ function getStatusMessage(timeSlot, isOpen) {
   const { start, end } = timeSlot;
   // If open, look at when timeSlot closes. If closed, look at when timeSlot opens.
   const refTime = isOpen ? end : start;
+  const timeSlotWeekday = refTime.day;
 
   // Get difference
   let diff = isOpen
@@ -107,7 +108,10 @@ function getStatusMessage(timeSlot, isOpen) {
   }
   const diffMinutes = diff % 60;
   const diffHours = Math.floor((diff / 60) % 24);
-  const diffDays = Math.floor(diff / (60 * 24));
+  let weekdayDiff = timeSlotWeekday - now.weekday;
+  if (weekdayDiff < 0) {
+    weekdayDiff += 7;
+  }
 
   // Create time string
   const { hour, minute } = refTime;
@@ -118,16 +122,19 @@ function getStatusMessage(timeSlot, isOpen) {
 
   const action = isOpen ? "Closes" : "Opens";
   const day = WEEKDAYS[timeSlot.start.day];
+  const hourLabel = diffHours === 1 ? "hour" : "hours";
 
-  if (diffDays > 1) {
-    return `${action} in ${diffDays} days (${day} at ${time})`;
-  } else if (diffDays === 1) {
-    return `${action} in a day (tomorrow at ${time})`;
-  } else if (diffDays === 0) {
+  if (weekdayDiff > 1) {
+    return `${action} in ${weekdayDiff} days (${day} at ${time})`;
+  } else if (weekdayDiff === 1) {
+    if (diffHours >= 24) {
+      return `${action} in a day (tomorrow at ${time})`;
+    } else {
+      return `${action} in ${diffHours} ${hourLabel} (tomorrow at ${time})`;
+    }
+  } else if (weekdayDiff === 0) {
     if (diffHours >= 1) {
-      return `${action} in ${diffHours} hour${
-        diffHours === 1 ? "" : "s"
-      } (today at ${time})`;
+      return `${action} in ${diffHours} ${hourLabel} (today at ${time})`;
     } else {
       return `${action} in ${diffMinutes} minutes (today at ${time})`;
     }
