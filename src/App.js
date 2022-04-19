@@ -1,9 +1,9 @@
 import { Typography, Grid, Badge, styled } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import EateryCard from "./ components/EateryCard";
-import "./App.css";
+import EateryCard from "./components/EateryCard";
 import getGreeting from "./util/greeting";
 import queryLocations from "./util/queryLocations";
+import "./App.css";
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -25,6 +25,9 @@ function App() {
     fontFamily:
       '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
     fontWeight: 800,
+    fontSize: "3em",
+    paddingTop: "1em",
+    paddingBottom: "2em",
   });
 
   const LogoText = styled(Typography)({
@@ -41,31 +44,10 @@ function App() {
     fontSize: 16,
   });
 
-  const NewBadge = styled(Badge)({
-    fontFamily:
-      '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-    fontWeight: 800,
-    marginLeft: 20,
-    marginRight: 25,
-    marginBottom: 4,
-    color: "#19b875"
-  });
-
   return (
     <div className="App">
       <div className="Container">
         <HeaderText variant="h3">{getGreeting()}</HeaderText>
-        <br></br>
-        <HeaderText variant="subtitle1">
-          <NewBadge
-            badgeContent={<HeaderText variant="body2">New</HeaderText>}
-            color="success"
-          ></NewBadge>
-          You can directly browse menus, specials, soups and more at supported
-          locations
-        </HeaderText>
-        <br></br>
-        <br></br>
         <Grid container spacing={2}>
           {openLocations.map(
             (

@@ -42,7 +42,7 @@ const LocationText = styled(Typography)({
   color: "#6C757D",
   marginBottom: "10px",
   fontWeight: 500,
-  fontSize:14
+  fontSize: 14
 });
 
 const DescriptionText = styled(Typography)({
@@ -52,20 +52,21 @@ const DescriptionText = styled(Typography)({
 const OpenText = styled(Typography)({
   color: "#19b875",
   fontSize: 14,
-  fontWeight:500,
+  fontWeight: 500,
   fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
 });
 
 const ClosedText = styled(Typography)({
   color: "#dd3c18",
   fontSize: 14,
-  fontWeight:500,
+  fontWeight: 500,
   fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
 });
 
 const ActionButton = styled(Button)({
+  fontWeight: 600,
   fontFamily:
-    '"Zilla Slab", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+    '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
   color: "white",
   backgroundColor: "#1D1F21",
   elevation: 30,
@@ -120,9 +121,6 @@ const RedDot = styled(Card)({
   width: "100%",
   height: "100%",
   foregroundColor: "#dd3c18",
-  animationName: "blinking",
-  animationDuration: "1s",
-  animationIterationCount: "infinite",
 });
 
 const SpecialsContent = styled(Accordion)({
@@ -143,7 +141,7 @@ export default function EateryCard({
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
-      <Grid item xs={12} md={6} lg={3} xl={3}>
+      <Grid item xs={12} md={4} lg={3} xl={3}>
         <StyledCard>
           <StyledCardHeader
             title={
@@ -182,7 +180,7 @@ export default function EateryCard({
                   setModalOpen(true);
                 }}
               >
-                Specials, Soups & More
+                Specials
               </ActionButton>
             )}
           </CardActions>
