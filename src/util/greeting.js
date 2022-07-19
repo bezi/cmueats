@@ -1,5 +1,4 @@
 var hours = new Date().getHours();
-var message;
 var graveyard = [
   "Staying up all night?",
   "Want a late-night snack?",
@@ -25,14 +24,19 @@ var evening = [
   "Grab a bite to eat!",
 ];
 
-if (hours >= 0 && hours < 6) {
-  message = graveyard[Math.floor(Math.random() * graveyard.length)];
-} else if (hours >= 6 && hours < 12) {
-  message = morning[Math.floor(Math.random() * morning.length)];
-} else if (hours >= 12 && hours < 17) {
-  message = afternoon[Math.floor(Math.random() * afternoon.length)];
-} else if (hours >= 17 && hours < 24) {
-  message = evening[Math.floor(Math.random() * evening.length)];
-}
+const getGreeting = () => {
+  let message = "Welcome to CMUEats!";
+  if (hours >= 0 && hours < 6) {
+    message = graveyard[Math.floor(Math.random() * graveyard.length)];
+  } else if (hours >= 6 && hours < 12) {
+    message = morning[Math.floor(Math.random() * morning.length)];
+  } else if (hours >= 12 && hours < 17) {
+    message = afternoon[Math.floor(Math.random() * afternoon.length)];
+  } else if (hours >= 17 && hours < 24) {
+    message = evening[Math.floor(Math.random() * evening.length)];
+  }
 
-$(".greeting").append(message);
+  return message;
+};
+
+export default getGreeting;
