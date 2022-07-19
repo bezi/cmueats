@@ -46,10 +46,10 @@ function App() {
 
   return (
     <div className="App">
-      <div className="announcement">
+      {/* <div className="announcement">
         🚧 There is an ongoing issue that is preventing us from retrieving the
         dining schedule. We are working on a fix. 🚧
-      </div>
+      </div> */}
       <div className="Container">
         <HeaderText variant="h3">{getGreeting()}</HeaderText>
         <Grid container spacing={2}>
